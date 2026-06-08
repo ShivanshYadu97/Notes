@@ -1,0 +1,2871 @@
+Module 17- 13 Week - JavaScript Fundamentals-1
+
+ =>Intro to JavaScript
+ 
+ *Node Js- it is a runtime env. which we install in the laptop for running the js codes in the local machine.
+ 
+ *Deno - it is also similar like Node and it is faster also.But Node used more.
+ 
+ *Datatypes - it can hold any types of datatypes.
+ 
+ *Primitive Datatypes- 
+	*String - "", '', One more is there.
+	
+	*Number - 1, 20, 20.6, Infinity, NaN
+	*NOTE - Infinity- it is also a number which is totally different , dont confuse it with the infinity number.
+	*NOTE - typeof , it tells us the type of the data type we using. ex.- console.log(typeof "test")
+	*NOTE - console.log() , it helps to print. ex.- console.log("shivansh"), console.log(20)
+	
+	*BigInt - it is used for the large numbers.ex.- 2^50-1, 45n
+	
+	*boolean - true, false
+	
+	*Undefined - it is not defined value.
+				ex. - let score;
+					  console.log(score);
+					  
+	*Null - it is empty in itself.
+	
+	*Symbol - it is used to define ur datatype totally different, and it saves the in db totally different.
+			  ex.- console.log(Symbol("name"))
+			  
+	
+	
+ *Non-Primitive Datatypes-
+	*Object - in js all types of datatypes and arrays etc are sort of Objects and we write the object in this format as key-value pair
+			  ex.- {key: "value"}
+			  
+	*Array
+	
+	
+  *Variables-
+    *var - it should not be used as it is outdated & data can be injected using it.
+		   ex. - var username = "Shivansh";
+		   
+	*let - it is also type of a variable which is in use these days.
+		   ex. - let username = "Shivansh";
+		   
+	*const - it makes the value constant and than we can not change the value.
+		   ex. - const username = "Shivansh";
+				 const value = true;
+		   
+	
+  *Scopes- U already know the scopes.
+	*Global - values defined outside the function is global variable.
+	
+	*Local - function, block
+			ex. function - function xyz(){
+				let value = 3;
+				console.log(value);
+			}
+			xyx()	/*here it will run the function */
+			
+			ex. block - if(){
+				
+			}
+			
+	*NOTE - we should not use the "var" cause it has alot of disadvantages in declaring the scope.
+	
+	*Module - there is difference when we want to use the one js page into another js page,
+			*Commons.js - it uses basic js to export the js file
+			*Module- using <scipt type="module"> , we can use this type 
+			*Hint- [Video - 36:13 - 39:07]
+			
+			
+  *Operators - 
+	*Assignment
+	*Arithmetic
+	*Comparison
+	*Logical
+	*Bitwise
+	
+	
+	
+	------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	=>Intro to Conditions Ternary Operator Switch Case & Loops
+	
+	*Condtions- 
+		*if , else [already studied]
+		NOTE- null is a datatype of Object. like true false is a boolean & 10 is a int.
+		
+	*Ternary operator- 1.Single condition - for writing the if-else condition in short we use this ternary operator
+					   ex.- isLoggedIn ? console.log("Welcome") : console.log("login again") , where welcome is true case and login again is false case for
+					   variable isLoggedIn.
+					   
+					   2.Two condition - there is also another condition we can write  - condition ? condition ? "":"" : ""
+					   
+					   3.Multiple condition - for this this we use the "switch" case. Code- 
+											 let grade = "A"
+											 switch(grade){
+												case 'A'
+													console.log("Grade is A");
+													break;
+												case 'B'
+													console.log("Grade is B");
+													break;
+												case 'C'
+													console.log("Grade is C")
+													break;
+													
+												default:
+													console.log("Invalid Grade");
+												
+											 }
+											 
+	*Loops- 1.for loop
+			2.while loop
+			3.do-while loop
+			
+			
+			
+	--------------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------------------------------------------------------------------------------
+	---------------------------------------------------------Module 17 Ended--------------------------------------------------------
+	
+	
+	
+Module 18 - 14 week - JavaScript Fundamentals-2
+
+	=>Introduction to Functions
+	
+	*functions are used for the resuablity of the code.
+	
+	*this is how we write the functions code-
+		let a = 10;
+		let b = 20;
+		
+		function add(){
+			console.log(a+b);
+		}
+		
+		add();
+		
+		so op- 30
+		
+	*Parameters & Arguments in function code-
+		
+		function add(a,b){		//parameters
+			console.log(a+b);
+		}
+		
+		add(20,30);				//arguments
+		
+		so op- 50
+
+	NOTE - functions are first class citizens.(means it is really powerful to manipulate the data)
+	
+	*We can pass functions as a value. Code-
+	
+		let sum = function add(){
+			console.log(a+b);
+		}
+	
+		console.log(sum(10,20));
+		
+		so op- 30
+		
+	*We can pass function inside a function also. Code-
+	
+		function x(callback){
+			console.log("Hello");
+			callback;
+		}
+	
+		function y(){
+			console.log("Bye");
+		}
+		
+		x(y);
+	
+		so op- Hello
+			   Bye
+			   
+	*We can also return a function from a function. Code-
+	
+		function add(a,b){		
+			return function sum(){
+				
+			};
+		}
+	
+	
+	---------------------------------------------------------------------------------------------------------------------------------------
+	---------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Arrow Functions
+	
+	*This is how to write the arrow function. Code-
+		
+		let add = (a,b) => {
+			return a + b;
+		}
+		
+		let result  = add(10,20);
+		console.log(result);
+		
+		so op- 30
+		
+	*We can also write the function in single line expression which is also called as lambdas expression. Code-
+	
+		let add = (a,b) => a + b;
+		
+	*In single line for a single variable. Code-
+	
+		let printNum = a => console.log(a);
+		
+	*Difference between function & Arrow function. Code-
+	
+		Function- function add(){
+			console.log(arguments);
+		}
+		add(10,20,30)
+		
+		so op- 10,20,30
+		
+		Arrow Function- let add = () => console.log(arguments);
+		
+		so op- Undefined arguments
+		
+			here it will give the undefined arguments in arrow function but not in the function cause the function contains arguments object which is array-like
+			object but the arrow function does not contain it thats why it is giving the error.
+			
+	*"this" keyword uses-
+		
+		*this keyword in function always points to its object but in the Arrow function, it points to the global object which is known as "window" object
+		 so the arrow function does not have this keyword which you can see in the op of code .Code-
+		
+			const person = {
+				name:'John',
+				greet:function(){
+					console.log('greet',this);
+					
+					console.log('Hello,my name is ${this.name}')
+				},
+				greetTwo:() => {
+					console.log('greetTwo',this);
+					
+					console.log('Hello,my name is ${this.name}')
+				}
+			}
+			
+			person.greet();
+			person.greetTwo();
+			
+			so op- greet:John
+				   Hello,my name is John
+				   greetTwo:Window
+				   Hello,my name is 
+				   
+		*We can not use the new keyword with the arrow function. Code-
+		
+			function RegularFunction(name){
+				this.name = name;
+			}
+			
+			const regularObj = new RegularFunction('John');
+			console.log(regularObj);
+			
+			const ArrowFunction = (name) => {
+				this.name = name;
+			}
+			
+			const arrowObj = new ArrowFunction('Peter');
+			console.log(arrowObj);
+			
+			so op- John
+				   Error:"ArrowFunction is not a constructor"
+				   
+				   
+	----------------------------------------------------------------------------------------------------------------------------------------
+	----------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>What are Arrays
+
+		*Arrays-
+		
+			*it has ordered list of elements.
+			
+			*it is contigous memory location allocation.
+			
+			*it can have numbers,booleans,Strings,Objects etc.
+			
+			*Array is a type of Object.(if u use typeof & if u use Array.isArray(numberArray) than it will give value in true or false).
+			
+			*Array length- numberArray.length 
+			
+			*Array using literal syntax - let mixedArray = Array('Apples',true,{name:"john"})
+			
+			*For deleteing the particular index in the array. Code-
+				let nums = [10,20,30,40]
+				delete nums[1]
+				num.length
+				
+				so op- 10,empty,30,40
+					   length- 4
+					   
+			*for of loop. Code-
+			
+				let nums = [10,20,30,40]
+				
+				for(let num of nums){
+					console.log('value of ${num}')
+				}
+				
+				so op- 10,20,30,40
+				
+				
+	--------------------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------------------------------------------------------------------------------------
+		
+	=>Methods of Array
+	
+		*Add in array happens using ".push()" and it will add the element in the last index. Code-
+			arrayNum.add(20)
+			
+		*Delete in array happens using ".pop()" and it will delete the element in the last index. Code-
+		
+			let arr = [10,20,30]
+			console.log(arr);
+			let popedElement = arr.pop();
+			console.log(popedElement)
+			console.log(arr)
+			
+			so op - 10,20,30
+					30
+					10,20
+					
+		*Add from front in the array using ".unshift()" and it will add the element in the first index. Code-
+			arrayNum.unshift(40);
+			
+		*Delete from front in the array using ".shift()" and it will delete the element from the first index. Code-
+			
+			let arr = [10,20,30]
+			console.log(arr);
+			let popedElement = arr.shift();
+			console.log(popedElement)
+			console.log(arr)
+			
+			so op- 10,20,30
+				   10
+				   20,30
+				   
+		*NOTE- using pop and push is more efficient than using shift and unshift cause when we use them it shifts the index and in pop & push it just add
+			   or remove the index which is more reliable.
+			   
+		*Slice- when we use ".slice(startIndex,endIndex)", and we can use them using multiple types.
+			
+			*here we give the startIndex and endIndex so it will give the new array where the last entered last index will not be included.
+			Code- let arr = [10,20,30,40]
+				   console.log(arr)
+				   let newarr = arr.slice(1,3)
+				   console.log(newarr)
+				   
+				   so op- 10,20,30,40
+						  20,30
+				   
+				   
+			*here we give the startIndex so it automatically goes till the lastIndex and gives the new array.
+			Code- let arr = [10,20,30,40]
+				  console.log(arr)
+				  let newarr = arr.slice(2)
+				  console.log(newarr)
+				  
+				  so op- 10,20,30,40
+						 30,40
+						 
+			*here we give the startIndex and the endIndex out of bound than it will consider till the last of the arrayIndex.
+			Code- let arr = [10,20,30,40]
+				  console.log(arr)
+				  let newarr = arr.slice(1,5)
+				  console.log(newarr)
+				  
+				  so op- 10,20,30,40
+						 20,30,40
+						 
+			*here we give the index in the negative value than it take it as lastIndex from -1,-2 and etc where 0 does not exists from backside.
+			Code- let arr = [10,20,30,40]
+				  console.log(arr)
+				  let newarr = arr.slice(-1)
+				  console.log(newarr)
+				  
+				  so op- 10,20,30,40
+						 40
+						 
+			*using slice we can make copy of the array(Shallow copy)
+			Code- let arr = [10,20,30,40]
+				  let newArr = arr.slice()
+				  console.log(newArr)
+				  
+				  so op- 10,20,30,40
+				  
+		*Splice- it has startIndex , deleteCount , replace arguments as splice(startIndex,deleteCount,arg1,arg2,...)
+		
+			*using it we can remove the elements totally from a given array or etc.
+			Code- let arr = ["I","help","you"]
+				  console.log(arr)
+				  arr.splice(1,2)
+				  console.log(arr)
+				  
+				  so op- I help you
+						 I
+						 
+			*by using all the args of splice,after the deleteCount it just adds the new args from the front in the array.
+			Code-	let arr = ["I","will","do","the","job"]
+					consolelog(arr)
+					let removedElements = arr.splice(0,3,"You","can")
+					consolelog(removedElements)
+					consolelog(arr)
+					
+					so op- I will do the job
+						   I will do
+						   You can the job
+						   
+			*by giving the deleteCount=0, you can just insert the values.
+			Code-	let arr = ["I","will","do","the","job"]
+					arr.splice(2,0,"what","is")
+					consolelog(arr)
+					
+					so op- I will what is do the job
+					
+			*NOTE- splice is a swiss knife which have all the actions like insert delete & replace.
+			
+			*using negative index we can also do.
+			Code-	let arr = [10,20,30,40]
+					arr.splice(-1,0,3,4)
+					consolelog(arr)
+					
+					so op- 10 20 30 3 4 40
+					
+		*Concatination- it has a method as ".concat()".
+		Code-	let arr = [10,20]
+				consolelog(arr.concat([30,40]))
+				consolelog(arr.concat([30,40],[50,60]))
+				consolelog(arr.concat([30,40],50,60))
+				
+				so op- 10,20
+					   10,20,30,40
+					   10,20,30,40,50,60
+					   10,20,30,40,50,60
+					   
+		*Iterate- it has a for each method which has 3 arguments as item,index & array
+		Code-	[10,20,30] forEach(item, index, array){
+					consolelog(${item} is at index ${index} in ${array})
+				}
+				
+				so op- 10 is at index 0 in 10,20,30
+					   20 is at index 1 in 10,20,30
+					   30 is at index 2 in 10,20,30
+					   
+		*Searching- it has a method as ".indexOf()" which search the element in the given array.if the element is not present it gives -1.
+		Code-	let arr = [1,0,false]
+				consolelog(arr.indexOf(0))
+				consolelog(arr.indexOf(false))
+				consolelog(arr.indexOf(100))
+				consolelog(arr.indexOf(null))
+				
+				so op- 1
+					   2
+					   -1
+					   -1
+					   
+			*it has a method as ".includes()" which returns value in true or false
+			Code-	let arr = [1,0,false]
+					consolelog(arr.includes(0))
+					
+					so op- true
+					
+			*it has a method as find which can find the object.
+			Code-	let users = {
+						{"id":"0", "name":"John", "class":"9th"},
+						{"id":"1", "name":"Eliot", "class":"9th"},
+						{"id":"2", "name":"Rey", "class":"9th"}
+					}
+					
+					let user = users.find(function(item,index,array)){
+							return item.id == 1
+					}
+					
+					consolelog(user)
+					
+					so op- {id:1, name:Eliot, class:9th}
+					
+			*it has a method as findIndex which helps to return index value if not present it gives -1.
+			Code-	let users = {
+						{"id":"0", "name":"John", "class":"9th"},
+						{"id":"1", "name":"Eliot", "class":"9th"},
+						{"id":"2", "name":"Rey", "class":"9th"}
+					}
+					
+					let user = users.findIndex(function(item,index,array)){
+							return item.name == "Eliot"
+					}
+					
+					consolelog(user)
+					
+					so op- {id:1, name:Eliot, class:9th}
+					
+		*Reverse- it has a method as ".reverse()" which reverses the array.
+		Code-	let arr = [1,2,3,4]
+				arr.reverse()
+				consolelog(arr)
+				
+				so op- 4,3,2,1
+				
+		*Split- it has a method as ".split()" which can take argument & on that we can split and make new array from a given String.
+		Code-	let names = 'John, Henry, Will'
+				let arr = names.split(', ') 			//here given coma only
+				
+				for(let name of arr){
+					consolelog('Send message to the ${name}')
+				}
+				
+				so op- Send message to the John
+					   Send message to the Henry
+					   Send message to the Will
+					   
+		*Join- it has a method as ".join()" which can join the given array & give op as single string value.
+		Code-	let names = 'John, Henry, Will'
+				let arr = names.split(', ') 	
+
+				let newArr = arr.join('')
+				let newArr1 = arr.join(';')
+				
+				consolelog(newArr)
+				consolelog(newArr1)
+				
+				so op- JohnHenryWill
+					   John;Henry;Will
+					   
+					   
+	--------------------------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Call Apply & Bind Method
+	
+	*Understand this code,
+	Code-	function printName(name){
+				consolelog('Hello ${name}')
+			}
+			
+			printName.city = "Delhi";
+			
+			printName("John")
+			
+			consolelog(printName.city)
+			
+			so op- Hi John
+				   Delhi
+				   
+		*when we run this code than the Global Execution Context gets created which has two parts - 1.Thread of Code & 2.Memory , so in the Thread of Code 
+		 another Execution Context gets created which will have printName context, and on the Memory part of the global execution context, it will have the
+		 whole function(copy of the function)+ another object gets created, thats why when we are printing the printName.city it has separate object as city
+		 and in the printName("John") its calling the function separately.Hence it has both function and object in it. Thats why functions are first class
+		 object in the javascript.
+		 
+	*Call method-
+		
+		*here example that,we are giving the function inside the object for "John" so it is pointing to it, but for the resuablity of the code, we created 
+		 another object and for that we are using the "call" method, so the "user2" can be using the function of user1.So we made the code efficient using 
+		 "call" method.
+		Code-	const user1 = {
+					name:"John",
+					greetings:function(){
+						consolelog('Hello,${this.name}')
+					}
+				}
+				
+				const user2 = {
+					name:"Peter"
+				}
+				
+				user1.greetings();
+				user1.greetings.call(user2);
+				
+				so op- Hello,John
+					   Hello,Peter
+					   
+		*if the function is outside than no need to write the user1.greetings cause now greetings is globally declared,and not anymore inside the object.
+		Code-	function greetings(){
+						consolelog('Hello,${this.name}')
+					}
+					
+					const user1 = {
+						name:"John"
+					}
+					
+					const user2 = {
+						name:"Peter"
+					}
+					
+					greetings.call(user1);
+					greetings.call(user2);
+					
+					so op- Hello,John
+						   Hello,Peter
+						   
+		*for directlyy giving the multiple arguments to the "call" method we can do
+		Code-	function greetings(city,age){
+						consolelog('Hello,${this.name}' of city ${this.city} of age ${age})
+					}
+					
+					const user1 = {
+						name:"John"
+					}
+					
+					const user2 = {
+						name:"Peter"
+					}
+					
+					greetings.call(user1,'Delhi',40);
+					greetings.call(user2,'Mumbai',50);
+					
+					so op- Hello,John of city Delhi of age 40
+						   Hello,Peter of city Mumbai of age 50
+		NOTE-here in greetings.call(user1,'Delhi',40);, user1 is changing the refrence of "this" keyword.
+		
+	*Apply method-
+	
+		*here we just give the 2nd argument as "array" where we giving as parameters in call method.
+		Code-	function greetings(city,age){
+						consolelog('Hello,${this.name}' of city ${this.city} of age ${age})
+					}
+					
+					const user1 = {
+						name:"John"
+					}
+					
+					const user2 = {
+						name:"Peter"
+					}
+					
+					greetings.apply(user1,['Delhi',40]);
+					greetings.apply(user2,['Mumbai',50]);
+					
+					so op- Hello,John of city Delhi of age 40
+						   Hello,Peter of city Mumbai of age 50
+		
+		*NOTE- both "call" & "apply" methods are used for the function borrowing.
+		
+	*Bind method- 
+	
+		*using bind , it creates a new function in itself where it's reference variable always will be pointing to its given bind reference function name.
+		Code-	const user1 = {
+					name:"John",
+					greetings:function(city,age){
+						consolelog('Hello,${this.name}' of city ${this.city} of age ${this.age}')
+					}
+				}
+				
+				const user2 = {
+					name:"Peter"
+				}
+				
+				const boundFunction = user1.greetings.bind(user2,'Delhi',40);
+				boundFunction();
+				
+				so op- Hello, Peter from city Delhi of age 40
+				
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------Module 18 Ended--------------------------------------------------------------------------
+	
+Module 19 - 15 week - JavaScript Fundamentals-3
+
+	=>Object and Manipulating Object
+	
+		*Keys- by writing "Object.keys()",it gives us the key array from the given object.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				let keys = Object.keys(emp)
+				console.log(keys)
+				
+				so op- ['name','age','salary']
+				
+		*Method chaining- suppose if we get any type of array objects than we can use its methods,where in this code we first getting keys in array  using
+						  Object and using its methods than we will use an array's method.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				let keys = Object.keys(emp).forEach((key) => consolelog(key))
+				
+				so op- name
+					   age
+					   salary
+					   
+		*Values- by writing "Object.values()",it gives us the value array from the given object.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				let values = Object.values(emp)
+				console.log(values)
+				
+				so op- ['John',30,50000]
+				
+		*Key & Value both- by writing "Object.entries()", it gives array inside an array.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				let keyValuePairs = Object.entries(emp)
+				consolelog(keyValuePairs)
+				
+				so op- [['name','John'],['age',30],['salary','50000']]
+				
+		*Array to Object conversion- by writing "Object.fromEntries()", we can change the given array into object.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+					
+				let keyValuePairs = Object.entries(emp)					//here we first changed it from object to the ArrayIterator
+				//consolelog(keyValuePairs)
+				
+				let convertToObject = Object.fromEntries(keyValuePairs)	//here than ArrayIterator changed into the Object
+				consolelog(convertToObject)
+				
+				so op- {name:'John',age:30,salary:50000}				//Array -> Object
+				
+		*Make copy of Object- by writing "Object.assign({},)", we can make copy of the given object.But both of their address will be different.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				let copyOfObject = Object.assign({},emp)
+				consolelog(copyOfObject)
+				if(emp === copyOfObject)
+				
+				so op- {name:'John',age:30,salary:50000}
+				       false
+					   
+		*Freeze- by writing the "Object.freeze()", we can make the object as constant so that we can not change its value further.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				Object.freeze(emp)
+				emp.name = 'Peter'
+				
+				console.log(emp)
+				
+				so op- {name:'John',age:30,salary:50000}
+		NOTE- we can use this freeze for making the singleton design pattern.
+		
+		*Is Freeze- by writing the "Object.isFrozen()", we can check that if the object is freeze or not.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				Object.freeze(emp)
+				
+				int ans = Object.isFrozen(emp)
+				consolelog(ans)
+				
+				so op- true
+				
+		*Seal- by writing the "Object.seal()", we can make the changes in the existing properties but can not add the new values in it.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				emp.department = 'IT'
+				Object.seal(emp)
+				
+				emp.id = 31
+				emp.name = 'Peter'
+				
+				consolelog(emp)
+				
+				so op- {name:'Peter',age:30,salary:50000,department:'IT'}
+				
+		*Is Sealed- same like Is Freeze.
+		
+		*Create- by writing "Object.create()", we can make a copy of the given object and we can add some new values in the copied object.
+		Code-	var emp = {
+					name:"John",
+				}
+				
+				let emp2 = Object.create(emp)
+				emp2.id = 5
+				consolelog(emp)
+				consolelog(emp2)
+				
+				so op- {name:'John'}
+				       {name:'John',id:5}
+					   
+		*Is Key- by writing "Object.hasOwn()", we can check that if that key exist or not.
+		Code-	var emp = {
+					name:"John",
+				}
+				
+				let ans = Object.hasOwn(emp, 'name')
+				consolelog(ans)
+				
+				so op- true
+				
+		*Properties- by writing "Object.getOwnPropertyNames()", it gives all the key array that in the object.It is same as "Object.keys()".
+		
+		*All Properties- by writing "Object.getOwnPropertyDesciptor( , )", it give all the properties like vale,writable,enumerable & configurable.
+		Code-	var emp = {
+					name:"John",
+					age:30,
+					salary:50000
+				}
+				
+				let descriptor = Object.getOwnPropertyDesciptor(emp, 'name')
+				consolelog(descriptor)
+				
+				so op- {value:'John',writable:true,enumerable:true,configurable:true}
+				
+			*Writable for single object- by writing "Object.defineProperty(object,key,{})" we can change the object's property value.here when we are changing 
+										 the writable than we won't be able to change its property again in future.
+			Code-	var emp = {
+						
+					}
+					Object.defineProperty(emp,'name'{
+						value:'John',
+						writable:false
+					})
+					
+					consolelog(emp.name)
+					
+					so op- John
+				
+			*Writable for multiple object- by writing "Object.defineProperties(object,{key1: ,key2: ,...})", using it we can change multiple key properties at the 
+										   same time.
+			Code-	const data = {}
+					
+					Object.defineProperties(data,{
+						username:{
+							value:"Peter",
+							writable:true
+						},
+						email:{
+							value:"peter@gmail.com"
+							writable:false
+						}
+					})
+					
+			*Enumerable for single/multiple object- in this we can stop the data manipulation for any type of loop.
+			Code-	const data = {}
+					
+					Object.defineProperties(data,{
+						username:{
+							value:"Peter",
+							writable:true,
+							enumerable:true
+						},
+						email:{
+							value:"peter@gmail.com",
+							writable:false,
+							enumerable:true
+						},
+						mobile:{
+							value:"8875524958",
+							enumerable:false
+						}
+					})
+					
+					for(const key in data){
+						consolelog('${key} : ${data[key]}')
+					}
+					
+					so op- username: Peter
+						   email: peter@gmail.com
+						   
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Object methods and enumerating properties
+	
+	*Object can be created from two ways- 1.object literal 
+										  2.Constructor based object creation
+	
+	*Object can be accessed from many ways-
+	Code-	const emp = {
+				name:"John",
+				salary:50000,
+				mobile:8845524958
+			}
+			consolelog(emp.name)
+			consolelog(emp['name'])
+			
+			so op- John
+				   John
+			*NOTE- here we got the new access method using emp['name'] or say emp['anykey'].
+			
+	*Object with function-
+	Code-	const emp = {
+				name:"John",
+				salary:50000,
+				address: function(addressName){
+					consolelog(addressName);
+				}
+			}
+			
+			emp.address("Yadu Niwas");
+			
+			so op- Yadu Niwas
+			
+	-------------------------------------------------------------------------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Non primitive data type, Value vs Reference Types
+	
+	*Primitive datatypes- String, Number, BigInt, Boolean, Undefined, Null, and Symbol. They are immutable and stored
+						  by value.
+						  
+	*Non-Primitive datatypes- Object, Array, Function. They are mutable and stored by reference.
+	
+	*Pass by value
+	Code-	let name = "Shivansh";
+			let name2 = name;
+			
+			consolelog(name2)
+			name = "Yadu"
+			consolelog(name)
+			
+			so op- Shivansh
+				   Yadu
+				   
+	*Pass by refrence
+	Code-	const emp = {
+				name:"John",
+				salary:50000
+			}
+			
+			let emp2 = emp
+			emp.name = "Peter"
+			consolelog(emp2)
+			consolelog(emp)
+			
+			so op- { name: "Peter", salary: 50000 }
+				   { name: "Peter", salary: 50000 }
+				   
+	-------------------------------------------------------------------------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Math, String and Date in JS
+	
+	*Math- it is a in-built object in the javascript.it has in-built methods & properties-
+	
+		*1. consolelog(Math.abs(-4))
+			so op- 4,as it gives the op always in absolute number.
+			
+		*2. consolelog(Math.exp(2))
+		    so op- 7.389,as it gives the op i n euler's number.
+			
+		*3. consolelog(Math.trunc(5.7))
+			so op- 5,as it removes the decimal value from number.
+			
+		*4. consolelog(Math.sqrt(25))
+			so op- 5, as it gives the op of the given number's square root.
+			
+		*5.	consolelog(Math.round(4.7))
+			so op- 5, as it gives the round figure.
+			
+		*6. consolelog(Math.ceil(3.1))
+			so op- 4, round-up
+		
+		*7. consolelog(Math.floor(3.1))
+			so op- 3, round-down
+			
+		*8. consolelog(Math.PI)
+			so op- 3.14, using any constant we can get its value.
+			
+		*9. consolelog(Math.pow(2,3))
+			so op- 8, here it gives the power of the given number.
+			
+		*10. consolelog(Math.min(5,10,50))
+			 consolelog(Math.max(5,10,50))
+			so op- 5, here it gives minimum value.
+				   50, here it gives maximum value.
+				   
+	*String-
+	
+		*1. consolelog('${10+20}')
+			consolelog("${10+20}")
+			consolelog(`${10+20}`)
+			so op- ${10+20}
+				   ${10+20}
+				   30, here the backtick(``) evaulates the expression first than give op as a String.
+				   
+		*2.	consolelog('hello world'.length)
+			so op- 11, here it will give the length of the String.
+			
+		*3.	consolelog('hello world'.[1])
+			so op- e, so here we get the op of the index 1 in the String.
+			
+		*4.	let str = "hello"
+			str[0] = "l"
+			consolelog(str)
+			so op- hello , here the value did not changed cause the Strings are immutable.
+		   
+		*5.	consolelog('hello'.at(1))
+			consolelog('hello'.at(-1))
+			so op- e
+				   o
+		
+		*6.	consolelog('hello'.charAt(3))
+			so op- l
+			
+		*7.	consolelog("hello" + " " + "world")
+			consolelog(`${hello} ${world}`)
+			so op- hello world
+				   hello world
+				   
+		*8. consolelog("endsWith".endsWith("With"))
+			consolelog("endswith").endsWith("With")
+			consolelog("Hello".startsWith("Hell"))
+			so op- true
+				   false
+				   true
+				   
+		*9. consolelog("includes".includes('c'))
+			so op- true
+			
+		*10. consolelog("Hello".indexOf('o'))
+			 consolelog("Hello".indexOf('j'))
+			 so op- 4
+					-1
+			 
+		*11. consolelog("Hello".padEnd(10,'!'))
+			 consolelog("Hello".padStart(10,'!'))
+			 so op- Hello!!!!!
+					!!!!!Hello
+		
+		*12. consolelog("hello".repeat(2))
+			 so op- hellohello
+			 
+		*13. consolelog("hello world".replace('world','everyone'))
+			 so op- hello everyone
+			 
+		*14. consolelog("hello world world".replaceAll('world','everyone'))
+			 so op- hello everyone everyone
+			 
+		*15. consolelog("hello world".slice(6))
+			 consolelog("hello world".slice(6,11))
+			 so op- world
+					world
+					
+		*16. consolelog("hello".substring(2))
+			 consolelog("hello".substring(1,3))
+			 so op- llo
+					el, here it will not includes the last index.
+					
+		*17. consolelog("hello , how , are , you".split(","))
+			 so op- [hello, how, are, you], here it gives the array op separated with ","
+			 
+		*18. consolelog("hello World".toLowerCase())
+			 consolelog("hello World".toUpperCase())
+			 so op- hello world
+			        HELLO WORLD
+					
+		*19. consolelog("	hello world 	".trim())
+			 consolelog("	hello world 	".trimEnd())
+			 consolelog("	hello world 	".trimStart())
+			 so op- hello world
+						hello world
+					hello world		, so here it removes the spaces in the given string.
+					
+	*Date-
+	
+		*1. let dateTime = new Date()
+			consolelog(dateTime)
+			so op- all the data time and value it will give.
+			
+		*2. consolelog(Date.now())
+			so op- it will give the op as the microseconds.
+			
+		*3. let dateTime = new Date()
+			consolelog(dateTime.getDate())
+			so op- it will give date only ex.- 12
+			
+		*4. let dateTime = new Date()
+			consolelog(dateTime.getDay())
+			so op- 6, it gives day which is 6 here which means saturday
+			
+		*5. let dateTime = new Date()
+			consolelog(dateTime.getFullYear())
+			so op- 2025, it gives the year
+			
+		*6. let dateTime = new Date()
+			consolelog(dateTime.getHours())
+			so op- 16, which is 24hr format so it is 4 o clock
+			
+		*7. let dateTime = new Date()
+			consolelog(dateTime.getMinutes())
+			so op- 24, which is minutes
+			
+		*8. let dateTime = new Date()
+			consolelog(dateTime.getMonth())
+			so op- 2, which is month
+			
+		*9. let dateTime = new Date()
+			consolelog(dateTime.setDay(15))
+			so op- 1600883, so we can use all types of set values here.
+			
+		*10. let dateTime = new Date()
+			consolelog(dateTime.setFullYear(2050))
+			consolelog(dateTime.toDateString()), using it, it changes the value into date and string
+			so op- Wed Feb 19 2050
+			
+		*11. let dateTime = new Date()
+			consolelog(dateTime.toISOString())
+			so op- it give different format op of data and time.
+			
+		*12. let dateTime = new Date()
+			consolelog(dateTime.toJSON())
+			so op- it also different format of date and time.
+			
+		*13. let dateTime = new Date()
+			consolelog(dateTime.toUTCString())
+			so op- it also different format of date and time.
+		
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Map and Set
+	
+	*Set-
+		
+		*Unoredered collection
+		
+		*It always stores unique values.
+		
+		*add()- 
+		Code-	const setExample = new Set();
+				setExample.add(10)
+				setExample.add(20)
+				setExample.add(10)
+				
+				consolelog(setExample)
+				
+				so op- 10,20, so here you can see it is not storing the duplicate values.
+				
+		*size-
+		Code-	const setExample = new Set();
+				setExample.add(10)
+				setExample.add(20)
+				
+				consolelog(setExample.size)
+				
+				so op- 2
+				
+		*clear()- it removes all the elements from the set.
+		Code-	const setExample = new Set();
+				setExample.add(10)
+				setExample.add(20)
+				
+				consolelog(setExample.size)
+				setExample.clear()
+				consolelog(setExample.size)
+				
+				so op- 2
+					   0
+					   
+		*delete()- it removes the single value from the set.
+		Code-	const setExample = new Set();
+				setExample.add(10)
+				setExample.add(20)
+				
+				consolelog(setExample)
+				setExample.delete(10)
+				consolelog(setExample)
+				
+				so op- 10,20
+					   20
+					  
+		*entries()- it gives the op as key & value pair and works as iterator for us.
+		
+		*forEach()- 
+		Code-	const data  = new Set();
+				data.add(10)
+				data.add(20)
+				data.add(30)
+				data.add(40)
+				
+				function multiply(value1,value2){
+					console.log(`data[${value1}] : data[${value2*2}]`)
+				}
+				
+				data.forEach(multiply);
+				
+				so op- data[10]:data[20]:
+					   data[20]:data[40]:
+					   data[30]:data[60]:
+					   data[40]:data[80]:, explanation- here the multiply pass multiply(10,10),multiply(20,20) & so on.
+					   
+		*has()- it checks that the value exist in the set or not in boolean expression gives op.
+		Code-	const data  = new Set();
+				data.add(10)
+				data.add(20)
+				data.add(30)
+				data.add(40)
+				
+				data.has(20)
+				data.has(100)
+				
+				so op- true
+					   false
+					   
+		*keys() / values()- it gives us the set of existing keys in the set.
+		Code-	const data  = new Set();
+				data.add(10)
+				data.add(20)
+				data.add(30)
+				data.add(40)
+				
+				let newData = data.keys()
+				consolelog(newData)
+				
+				so op- 10,20,30,40
+				
+		*from()- using it we can change the set into an array.
+		Code-	const arr = [10,20,30,40,10,20,30,40]
+				let set = new Set(arr)				//here we converted the arr into the set which will remove duplicate values
+				let newArr = Array.from(set)		//here we gain converted the set into an array
+				consolelog(newArr)
+				
+				so op- [10,20,30,40]
+				
+	*Map-
+	
+		*get() & set()-
+		Code-	let map = new Map()
+				map.set('1','stringValue')
+				map.set(1,'numberValue')
+				map.set(true,'booleanValue')
+				
+				consolelog(map.get(1))
+				consolelog(map.get('1'))
+				consolelog(map.get(true))
+				
+				so op- numberValue
+					   stringValue
+					   booleanValue
+					   
+		*Object- object can also be stored as key in map.
+		Code-	let user = {name:"John"}
+				let visitsMap = new Map();
+				
+				visitsMap.set(user,100)
+				
+				consolelog(visitsMap.get(user))		//here it will give the value
+				consolelog(visitsMap)
+				
+				so op- 100
+					   Object:100
+					   
+		*Set multiple values-
+		Code-let map = new Map()
+				map.set('1','stringValue')
+				.set(1,'numberValue')
+				.set(true,'booleanValue')
+						
+		*keys() & values()-
+		Code-	let map = new Map()
+				map.set('tomato',200)
+				map.set('capsicum',300)
+				map.set('onion',400)
+				
+				for(let veges of map.keys()){
+					consolelog(veges)
+				}
+				
+				for(let costs of map.values()){
+					consolelog(costs)
+				}
+				
+				so op- tomato
+					   capsicum
+					   onion
+					   200
+					   300
+					   400
+					   
+		*forEach(value,key,map)-
+		Code-	//let itemsMap = new Map()
+				//itemsMap.set('tomato',200)
+				//itemsMap.set('capsicum',300)
+				//itemsMap.set('onion',400)
+				
+				let itemsMap = new Map(
+				[
+					['tomato',200],
+					['capsicum',300],
+					['onion',400]
+				]
+				)
+				
+				itemsMap.forEach(value,key,map){
+					consolelog(`${key}:${value}`)
+				}
+				
+				so op- tomato:200
+					   capsicum:300
+					   onion:400
+				*NOTE- here we have declared the map as array of arrays for the key-value pair
+				
+		*Object to Map conversion-
+		*NOTE- for defining the object into a map , we can not directly do it cause it first must be the iterable, as in the upper code we have defined firstly
+		       the array of arrays,so it becomes itreable, we can do that using Object.entries() so that we can convert the object into a Map.
+		Code-	let user = {
+					name:"John",
+					age:20
+				}
+				
+				let map = new Map(Object.entries(user))
+				consolelog(map)
+				
+				so op- Map(2) { 'name' => 'John', 'age' => 20 }
+		
+		*Map to Object conversion-
+		Code-	let itemsMap = new Map(
+				[
+					['tomato',200],
+					['capsicum',300],
+					['onion',400]
+				]
+				)
+				
+				let itreable = itemsMap.entries()			//here first we changed from Map to MapIterator
+				consolelog(Object.fromEntries(iterable))	//than we converted it from MapIterator(array of arrays) to the Object.
+				
+				so op- {onion:200,capsicum:300,onion:400}	//Map -> Object
+				
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------Module 19 Ended---------------------------------------------------------------------
+	
+Module 20 - 15 week - JavaScript Dom
+
+	=>Methods of DOM Part -1
+	
+	*DOM Selectors- DOM selectors are used for selecting the elements for styling or data manipulation
+	
+		*DOM is also a object.(document.)(ex.- document.getElementById())
+		
+		*DOM is html's javascript version.
+		
+		*DOM is used for styling & data manipulation both.
+		
+		*document.getElementById()- inside getElementById(), we pass the id name and than that element get selected.
+		Code-	
+				<style>
+					.highlight{
+						background-color: aqua;
+					}
+				</style>
+				<body>
+					<p id="paragraph">Here we are writing paragraph</p>
+					
+					<script>
+						const paragraphRef = document.getElementById('paragraph');
+						
+						paragraphRef.addEventListener('click', ()=>{
+								paragraphRef.classList.toggle('highlight')		//here classList(if class available) than toggle(on/off)
+							}
+						)
+					</script>
+				</body>
+				
+				so op- <p id="paragraph" class="highlight"> Here we are writing paragraph </p>
+						so here if we click on that paragraph than it color will change and the class will be selected to that paragraph.
+						
+						
+		*document.getElementsById()- using it we can select multiple elements at the same time.And we will recieve it in NodeSelector.
+		Code-	<body>
+					<ul>
+						<li id="items">Item 1</li>
+						<li id="items">Item 2</li>
+						<li id="items">Item 3</li>
+					</ul>
+					<script>
+						const itemsRef = document.getElementsById('items');
+				</body>
+				
+		*document.querySelectorAll()- it takes class and css and etc type of selectors as input class.
+		Code-	<body>
+					<p id="paragraph">Here we are writing paragraph</p>
+					<scipt>
+					const queryTypeRef = document.querySelectorAll('.paragraph')
+					</scipt>
+				</body>
+				
+		*document.querySelector()- 1.it takes id selector which is unique always.
+								   2.it takes class selector , so which can be many with same name but it always picks the first one.
+		Code 1-	<body>
+					<p id="paragraph">Here we are writing paragraph</p>
+					<scipt>
+					const queryTypeRef = document.querySelector('#paragraph')
+					</scipt>
+				</body>
+				
+		Code 2- <body>
+					<ul>
+						<li id="items">Item 1</li>
+						<li id="items">Item 2</li>
+						<li id="items">Item 3</li>
+					</ul>
+					<script>
+						const itemsRef = document.querySelector('items');
+					</scipt>
+				</body>
+				
+				so op- Item 1
+				
+		*document.getElementByTagName()- here we can directly use the tag name for getting the element.
+		Code 2- <body>
+					<ul>
+						<li id="items">Item 1</li>
+						<li id="items">Item 2</li>
+						<li id="items">Item 3</li>
+					</ul>
+					<script>
+						const itemsRef = document.getElementByTagName('li');
+					</scipt>
+				</body>
+				
+				so op- Item 1
+					   Item 2
+					   Item 3
+				*NOTE- but we dont use it cause it can create trouble cause it can select all the tags at once.
+				
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Methods of DOM Part - 2
+	
+	*document-
+		
+		*document.URL- it gives the url of the page.
+		
+		*document.domain- it gives the domain of the page.
+		
+		*document.head- it gives all the head tags of the page.
+		
+		*document.all[]- multiple properties in array.ex.-document.all[4], gives title
+		
+		*document.title- using it we can change the title name.ex.- document.title='abcde'
+		
+		*.append()-
+		Code-	const body = document.body;
+				body.append('hello','everyone')
+				
+				so op- so it will append these text into the body of the html page.
+				
+		*document.createElement()- using it we can create any new element but it wont get allocated until we use .append property.
+		Code-	const div = document.createElement('div')
+				const body = document.body;
+				body.append(div)
+				
+				so op- now the div tag will also be added to the body tag.
+				
+		*.innerText- 
+		Code-	const div = document.createElement('div')
+				div.innerText = 'JavaScript'
+				const body = document.body;
+				body.appendChild(div)    					//appendChild will work same as append here
+				
+				so op- now the div tag will also be added to the body tag.And Javascript text will be shown in html page.
+		
+		*.textContent-
+		Code-	const div = document.createElement('div')
+				div.textContent = 'JavaScript'
+				const body = document.body;
+				body.appendChild(div)
+				
+		NOTE- here if we apply the display as none to both .innerText & .textContent than only the textContent will show all the values not the innerText.
+			  as it does not show all the values.
+			  
+		*innerHTML- using it we can give multiple tags at the same time.
+		Code-	const div = document.createElement('div')
+				body.appendChild(div)
+				
+				div.innerHTML = '<strong><p> Here is the text is written </p></strong>'
+				
+				so op- so it will show the 'Here is the text is written' in strong inside p tag.
+				
+		*.remove()-	it will remove the element directly.
+		Code-	const div = document.querySelector('div')			//it will pick div tag from html page
+				
+				const spanOne = document.getElementById('one')
+				
+				spanOne.remove();
+				
+		*.removeChild()- using it we can delete the child tag.
+		Code-	html-
+				<body>
+					<div>
+						<span id = "two"> Here is the text</span>
+					</div>
+				</body>
+				
+				js-
+				const div = document.querySelector('div')
+				
+				const spanTwo = document.getElementById('two')
+				
+				div.removeChild(spanTwo)
+				
+		*.getAttribute()- it gives the attribute name.
+		Code-	const div = document.querySelector('div')
+				const spanTwo = document.getElementById('two')
+				
+				spanTwo.getAttribute('name')
+				
+				so op- abcde, which is the attribute name.
+				
+		*.setAttribute(,)- it resets the attribute name.
+		Code-	const div = document.querySelector('div')
+				const spanTwo = document.getElementById('two')
+				
+				spanTwo.setAttribute('name','abcde')
+				
+				so op-  it will change the attribute name as abcde.
+				
+		*.removeAttribute()- using it we can remove the attribute from the tag.
+		Code-	const div = document.querySelector('div')
+				const spanTwo = document.getElementById('two')
+				
+				spanTwo.removeAttribute('name')
+				
+				so op- it will remove the attribute.
+				
+		*.id- it changes the id name.
+		Code-	const div = document.querySelector('div')
+				const spanTwo = document.getElementById('two')
+				
+				spanTwo.id = 'hijk'
+				
+				so op- it will change the id name.
+				
+		*.classList.add('new-class')- the new class attribute will be added by using it.
+		Code-	const div = document.querySelector('div')
+				const spanTwo = document.getElementById('two')
+				
+				spanTwo.classList.add('new-class')
+				
+				so op- so the new class attribute with name 'new-class' will be added
+				
+		*.classList.remove('new-class')- class will get removed from that tag.
+		Code-	spanTwo.classList.remove('new-class')
+		
+		*.className- using it we can change the class name.
+		Code-	spanTwo.className = 'hello-class'
+		NOTE- we can also give multiple class names at the same time
+		Code-	spanTwo.className = 'hello-class a b c d e'
+		
+		*.classList.toggle()- suppose if the class from this name exist than it will remove & if not than it will be added.
+		Code-	spanTwo.classList.toggle('three')
+		
+		*.style.setProperty(,)- using it we can set the text style.
+		Code-	spanTwo.style.setProperty('color','green')
+		
+		*.style.backgroundColor- using it we can change the background-color of the text.
+		Code-	spanTwo.style.backgroundColor = 'tomato'
+		
+		NOTE- style has many methods in it too.
+		
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+		
+	=>Methods of DOM Part -3
+		
+	*.firstChild- we can have parent tag and we can access its first child tag using .firstChild.
+	Code-	<body>
+				<div id = "parentDiv">
+					<p>This is the first Child</p>
+					<p>This is the Second Child</p>
+					<p>This is the Third Child</p>
+				</div>
+				<scipt>
+					var parentDiv = document.getElementById('parentDiv')
+					var firstChild = parentDiv.firstChild
+					var lastChild = parentDiv.lastChild
+					var secondChild = parentDiv.nextSibling
+					
+					consolelog(firstChild)
+					consolelog(lastChild)
+					consolelog(secondChild)
+				</scipt>
+			</body>
+		
+		so op- This is the first Child
+			   This is the Third Child
+			   This is the Second Child
+			   
+	*.nextSibling- it gives the next child tag.As you can see the above code.
+	
+	*.lastChild- it gives the last child tag.As you can see the above code.
+	
+	*Events Listener-
+	
+		*.addEventListener- 
+		Code1-	<body>
+					<h1>Events</h1>
+					<button id = "myButton">Click me</button>
+					
+					<script>
+						var button = document.getElementById('myButton')
+						
+						//define event handle function
+						function handleClick(){
+							alert('button clicked')
+						}
+						
+						//adding event listener
+						
+						button.addEventListener('click',handleClick)
+					</script>
+					
+				</body>
+				
+				so op- alert as- "button clicked"
+				
+		Code2-	<body>
+					<h1>Events</h1>
+					<button id = "myButton">Click me</button>
+					
+					<script>
+						var button = document.getElementById('myButton')
+						
+						//define event handle function
+						function handleClick(){
+							alert('button clicked')
+						}
+						
+						//adding event listener
+						
+						button.addEventListener('click',handleClick,{once:true})
+					</script>
+					
+				</body>
+				
+				so op- alert as- "button clicked", only the alert will be given once cause we used here {once:true}
+				
+		*.removeEventListener- when we use the .addEventListener it stores the memory everytime we click the button,so it should be removed from the memory 
+							   so for that we use the setTimeout function.for that we use .removeEventListener
+			  
+		Code3-	<body>
+					<h1>Events</h1>
+					<button id = "myButton">Click me</button>
+					
+					<script>
+						var button = document.getElementById('myButton')
+						
+						//define event handle function
+						function handleClick(){
+							alert('button clicked')
+						}
+						
+						//adding event listener
+						
+						button.addEventListener('click',handleClick)
+						
+						//remove after 3sec
+						
+						setTimeout(function(){
+							button.removeEventListener('click',handleClick)
+						},3000)															//3000- 3sec
+					</script>
+					
+				</body>
+				
+	*Phase-
+	
+		*Bubble phase
+		
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------Module 20 Ended----------------------------------------------------------------
+	
+Module 23 - 16 week - HOF and Functional Programming
+
+	=>What is Higher Order Function (HOF) Callback, Returning function Setting time (Setinterval, SetTimeout)
+	
+	*First Class Function- a function that returns a function or takes other functions as arguments is called a higher-order function.
+	
+		*Ex1-	const powerTwo = (n)=>{
+					return n**2;				//it means n^2
+				}
+				
+				const powerCube(powerTwo,n){
+					return powerTwo*n;
+				}
+				
+				consolelog(powerCube(powerTwo,3))
+				
+				so op- 27
+				
+		*Ex2-	const sayHello(){
+					return ()=>{
+						consolelog("Hello Shivansh")
+					}
+				}
+				
+				let var = sayHello();
+				sayHello();
+				
+				so op-	Function[Anonymous]
+						Hello Shivansh
+						, here we are defining function inside function, so when we store function as var than it will store the function itself,and if we execute
+						it than it gives the value inside the function.
+						
+		*Ex3-	const higherOrder = n => {
+					const oneFun = m =>{
+						const twoFun = p =>{
+							return m+n+p;
+						}
+						return twoFun;
+					}
+					return oneFun;
+				}
+				
+				consolelog(higherOrder(3+4+5)) , //where n = 3, m = 4, p = 5, so here we define like function inside function inside function.And you can see it 
+												//returns the value in diff manner.
+				
+				so op- 12
+				
+		*Ex4-	let nums = [4,5,3,2]
+		
+				const sumArr = arr =>{
+					let total = 0;
+					arr.forEach(function(element){
+						total+=element;
+					});
+					return total;
+				}
+				
+				consolelog(sumArr(nums));
+				
+				so op- it will give the sum of array.
+				
+		*setInterval- it gives the op on the decided given time, and it will run that given function in time.
+		ex.-	function oneMoreHello(){
+					consolelog("Hello!")
+				}
+				
+				setInterval(oneMoreHello,1000)		//1000 = 1sec
+				
+				so op- Hello!
+					   Hello!
+					   so it will print infinite calls to that function in 1 sec.
+					   
+		*setTimeout- it gives the op after given decided time.
+		ex.-	function oneMoreHello(){
+					consolelog("Hello!")
+				}
+				
+				setTimeout(oneMoreHello,2000)
+				
+				so op- Hello!
+					   so it will call function after 2 sec.
+					   
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>For each, map, filter reduce every, find, sort
+	
+	*forEach-	
+	
+		*Ex1- let arr = [2,3,4]
+			
+			  arr.forEach(function(element,index,arr){
+					consolelog(element,index,arr)
+			  })
+			  
+			  so op- 2 0 [2,3,4]
+					 3 1 [2,3,4]
+					 4 2 [2,3,4]
+				      here element is the first element of the array. And the forEach takes the callback function.
+					  
+		*Ex2- let arr = [2,3,4]
+				
+			  arr.forEach((element,index,arr)=>{
+					consolelog("Arrow : ",element,index,arr)
+			  })
+			  
+			  so op- Arrow : 2 0 [2,3,4]
+					 Arrow : 3 1 [2,3,4]
+					 Arrow : 4 2 [2,3,4]
+					 
+		*Ex3- const heros = ["Daredevil,"MoonKnight","Spiderman","Ironman"]
+			  
+			  heros.forEach((el)=>{consolelog(el.toUpperCase)})
+			  
+			  so op- DAREDEVIL
+					 MOONKNIGHT
+					 SPIDERMAN 
+					 IRONMAN
+					 
+	*map-
+	
+		*Above all examples will be same for map.We can say map is same as forEach.
+		
+	*filter-
+	
+		*Ex1- const heros = ["Daredevil,"MoonKnight","Spiderman","Ironman"]
+		
+			  const ans = heros.filter((h)=>{
+					h.endsWith('man')
+			  })
+			  consolelog(ans)
+			  so op- Error
+			  
+			  NOTE-  here the error will come cause we are not returning the value.So the right code will be-
+			  const heros = ["Daredevil,"MoonKnight","Spiderman","Ironman"]
+		
+			  const ans = heros.filter((h)=>{
+					return h.endsWith('man')
+			  })
+			  consolelog(ans)
+			  
+			so op- Spiderman
+				   Ironman
+				   
+	*reduce- it takes the two ip values as (callback function(prev,curr),initialvalue or 0) , where the callback function takes previous value and current value.
+	
+		*Ex1- const cartBill = [20,30,50]
+		
+			  const sumOfBill = cartBill.reduce( (prev,curr) => prev+curr ,0)
+			  consolelog(sumOfBill)
+			  
+			  so op- 100
+			  so here reduce() goes through each element and accumulates the sum:
+																				  Start with 0 (initial value).
+																				  0 + 20 = 20
+																				  20 + 30 = 50
+																				  50 + 50 = 100
+			  
+	*every- 
+	
+		*Ex1- const gameScore = [200,300,310,250,150]
+		
+			  //check if all the values are numbers
+			  
+			  const ans = gameScore.every((v)=> typeof v === Number)
+			  
+			  consolelog("Check : " , ans)
+			  consolelog(typeof gameScore[1])
+			  
+			  so op- Check : false
+					 number
+					 
+					NOTE- so here we can see that its giving false but ans is true cause here the typeof return as String value where we comaparing it from
+						  the datatype Number so it will give false.So the right code where we will give Number as 'number' cause we can see the consolelog
+						  of typeof gameScore[1] giving as number.So code-
+						  
+			const gameScore = [200,300,310,250,150]
+		
+			  //check if all the values are numbers
+			  
+			  const ans = gameScore.every((v)=> typeof v === 'number')
+			  
+			  consolelog("Check : " , ans)
+			  consolelog(typeof gameScore[1])
+			  
+			  so op- Check : true
+					 number
+					 
+	*find-
+	
+		*Ex1- const score = [200,310,300,400,100]
+		
+			  const ans = score.find((score)=> score>200)
+			  
+			  consolelog(ans)
+			  
+			  so op- 310
+			  
+			  NOTE- so here the just >200 is 300 but it is giving ans as 310 cause it iterates through the array so the it goes with the first value that comes.
+			  
+	
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>What is regex and Different Character in Regex and importance Writting regex with example
+	
+	*Writing Regex code-
+	
+		1.	.test() - it just returns op in bool if the value is present or not.
+		
+			let pattern = 'pw'
+			let flag = 'gi'		
+			
+			let regEx = new RegExp(pattern,flag) // or we can use
+			let regEx = /pw/gi
+			
+			
+			let strToCheck = 'pw is the best institute which run on PW office, pw can be really good for our future, better luck with Pw'
+			
+			cons result = regEx.test(strToCheck)
+			consolelog(result)
+			
+			so op- true
+			NOTE- In flag = 'gi' here it means- 1.g-global search- which will search whole paragraph.
+												2.i-insensitive- to select the case insensitive.
+												
+		2. .match() - it gives the op of the strings of array of all the matched elements.
+		
+			let pattern = 'pw'
+			let flag = 'gi'		
+			
+			let regEx = new RegExp(pattern,flag) // or we can use
+			let regEx = /pw/gi
+			
+			
+			let strToCheck = 'pw is the best institute which run on PW office, pw can be really good for our future, better luck with Pw'
+			
+			cons result = strToCheck.match(regEx)
+			consolelog(result)
+			
+			so op- ['pw','PW','pw','Pw']
+			
+		3.	.replace() - it will replace all the given string if it finds than with given pattern.
+		
+			let pattern = 'pw'
+			let flag = 'gi'		
+			
+			let regEx = new RegExp(pattern,flag) // or we can use
+			let regEx = /pw/gi
+			
+			
+			let strToCheck = 'pw is the best institute which run on PW office, pw can be really good for our future, better luck with Pw'
+			
+			cons result = strToCheck.replace(regEx,'p-w')
+			consolelog(result)
+			
+			so op- 'p-w is the best institute which run on p-w office, p-w can be really good for our future, better luck with p-w'
+			
+			Ex- here a use case where if we get a url than if it has space than it changes with %20 or %30 or %31 , so for that we will use to replace '-'.
+			Code-	let regEx = /%\d\d/gi	//here /d mean one digit than /d means another digit which makes it any digit between 10-99
+			
+					let url = http://localhost:8080/pw%30skills
+					
+					const result = url.replace(regEx,'-')
+					consolelog(result)
+					
+					so op- http://localhost:8080/pw-skills
+							here you can see that %30 got changed to the '-'
+							
+	*NOTE- for learning or getting the REGX code we can go to "regexr.com" ,in which check "Community" where you can get any type of email validation.
+			you can also find the "Cheatsheet" there to learn.
+			
+	
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------Module 23 Ended----------------------------------------------------------------
+	
+Module 24 - 17 week - Working of JavaScript
+	
+	=>Part 1 - Execution of JavaScript
+	
+	*Execution Context- it has two parts Code and Memory, where in memory code is written in key:value pair and all the written code runs line by line.
+	
+	*NOTE- Due to this line by line code run , JavaScript is called as Single Threaded Language.
+	
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Part 2 - GEC, CallStack and Scope
+	
+	*Just search on the notes "Global Execution Context".
+	
+	*CallStack-		
+					 |     |
+					 |     |
+					 |     |
+					 |     |   
+					 |sum()|   ^
+					 | GEC |   ^	
+					 -------   ^call flow
+					 
+	*Scope- these are three types -  local,global and lexical
+	 Ex. of lexical scope- a{
+							b{
+								c{
+								
+								}
+							}
+							}
+						so here the c 's  lexical scope is b and b 's lexical scope is a and a 's lexical scope is global execution context.
+						
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Part 3 - Working of JavaScript Function
+	
+	*Just search execution context in this note and you will got to know that in code key-value pair get stored as undefined than function just written as
+	 it until it is called.Now in memory, key-value gets defined in the code part and in memory too,and line by line code gets written in memory, than function
+	 also get written and again local execution context gets created than it again parts in code and memory than it defines value in it also, than it exits
+	 this execution context than another local execution context ends than at last global execution context ends in manner of Call-Stack.
+	*NOTE- you can see in the webpage where you will get to see Call-Stack as Stack where you can debug and see how the stack is getting called.
+	
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------Module 24 Ended------------------------------------------------------------------------
+	
+Module 25 - 17 week - Error Handing in JavaScript
+
+	=>Error Handing using try & catch
+	
+	*There are two types of errors in javascript- 
+	
+		1.Syntax Error- Ex- suppose a String value is getting defined by some other datatype as int than it will give error as Syntax Error.
+						javascript will give this error in the code itself.So we can fix them in code itself.
+						
+		2.Runtime Error- Ex- suppose a download get crashed cause of losing internet than it will get stuck,so for that we do the error handling,called Runtime
+						 Error.This can be fixed using only try-catch.
+		
+		
+	*try-catch- inside try block we write the code and if we find the error than we go into the catch block and gives the error or op as Exception Handling.
+				And if we don't find any error than it won't go inside the catch block.
+				
+	*try-catch-finally- finally block will always run whether the error is there or not.
+	
+		Ex.- try{
+				int i = undefined;
+				consolelog(i[0]);
+			}catch(err){
+				consolelog("Error found:", err)
+			}
+			finally{
+				consolelog("Application Running...")
+			}
+			consolelog("End!!!")
+			
+			so op- Error found: Type Error
+				   Application Running...
+				   End!!!
+				   
+				   so here you can see the code where we trying to read the undefined value so it is giving the error.
+				  
+	*NOTE- Exception Handling(using try-catch) works as Guard for our application.
+	
+	*Ex. of finally- suppose we make a database connection so after our all execution we should close the connection so we will use finally to close the 
+					 db connection.
+	
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Use of try catch in real world Application
+	
+	Ex.- try{
+				int i = undefined;
+				consolelog(i[0]);
+			}catch(err){
+				consolelog("Error found:", err)
+			}
+			finally{
+				consolelog("Application Running...")
+			}
+			consolelog("End!!!")
+			
+			so op- Error found: Type Error
+				   Application Running...
+				   End!!!
+				   
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------Module 25 Ended-----------------------------------------------------------------------
+	
+Module 26 - 17 week - Promises & Callbacks
+
+	=>Callbacks
+	
+	*Callback- when a function takes a function as a argument than its called a Callback Function.
+	 Ex.-	
+			function h(x,fn){
+				consolelog(x*x);
+				fn();
+			}
+			
+			h(10,exec);
+			
+			function exec(n){
+				consolelog("squared value is:",n)
+			}
+			
+			so op- 100
+				   squared value is : undefined
+				   here we getting this line cause we did not passed the value of callback function which is "fn", where "h" is a higher-order function.
+				   so the write code will be- 
+				   
+			function h(x,fn){
+				consolelog(x*x);
+				fn(x*x);
+			}
+			
+			h(10,exec);
+			
+			function exec(n){
+				consolelog("squared value is:",n)
+			}
+			
+			so op- 100
+			       squared value is: 100
+				   so here we gave the value to the callback function.
+				   
+		*Synchronous (Sync) - here the code is running line by line and that's why javascript is called as Synchronous language.
+		
+		*NOTE- here the setTimeout is not the part of javascript but the part of run-enviornment as Chrome or node. It is also called as piece of asynchronous
+		       code.
+		
+		*Asynchronous (Async) - here when the code don't run line by line than its called as Asynchronous function.
+		Ex- 
+			consolelog("start")
+			
+			setTimeout(function f(){
+				consolelog("timer done")
+			},3000)							//gave 3 sec for print
+			
+			consolelog("end")
+			
+			so op- start
+				   end
+				   timer done
+				   so here you can see that the print should start->timer done->end but its different where timer done print after 3 sec even after end.So it
+				   is the perfect example of Async function.It happens cause the it has its own "Call Stack" which stores the function of line by line code before
+				   running the code and it also has "Event Loop" and "Run-Enviornment".So suppose in the code first it comes to "consolelog("start")" than the
+				   event loop checks and stores in the call stack and run it and than delete it, now further it comes to "setTimeout(function f()" which is not 
+				   a part of javascript so it goes to the Run-Enviornment and than it stores in the "Macro Queue/Callback Queue" than code further execute and than 
+				   event loop checks the code line by line by skipping this piece of asynchronous code(setTimeout) than stores "consolelog("end")" in the call stack
+				   again and execute it and remove it from call stack.Now event loop finally gives permission to the Callback Queue which removes "setTimeout" and 
+				   store it in the call stack than run it.So thats how call flow comes as start->end->timer done.
+				   
+				   *NOTE- in short the asynchronous function is not a part of JavaScript but the part of Run-Enviornment.So thats why javascript runs its code first
+						  than run the piece of asynchronous code.
+				   
+		Ex2-console.log("start")
+			
+			setTimeout(function f(){
+				console.log("timer 1 done")
+			},3000)	
+			
+			setTimeout(function f(){
+				console.log("timer 2 done")
+			},100)	
+			
+			console.log("end")
+			
+			so op-  start
+					end
+					timer 2 done
+					timer 1 done
+				   
+	*NOTE- For Callback there is two problems arises-
+		   1. Callback Hell- in this, the function inside function and inside there is another function which makes it difficult to understand.
+		   2. Inversion of Control- when we give function to another function than our one function gets helpless as it does not have control on its own,so
+									as a solution we use promises.
+	
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Promise Constructor
+	
+	*NOTE- watch diagram at 15:18 , for better understand
+	
+	*So here, first of all "start" will print than the when we get "let x" than the new Promise gets created by calling the "createPromise"function and than
+	 it gets stored in the "Callback Stack" than function"exec" called same stores in "Callback Stack" than due to the Asyn piece of code it stores function
+	 "f" in the "macro queue" and than it comes to in between to "let x" than it prints "got a new promise!" than when we call "x.then" cause it is internally 
+	 binded with the resolve so it stores it in the micro queue,now code continues as thread of code which nnow prints the "end" than for loop works after 10
+	 sec of for loop done, "event loop" checks if the micro queue and macro queue are filled than it goes for micro queue first which gets stored in "Callback
+	 Stack" which is function "g" but as it is internally binded with the async code than the "event loop" pu function "f" in the "Callback Stack" which executes
+	 and now "Timer is done!" print than "resolve done!" is print after that it comes to print "promise done!" as it is resolved but if suppose there is reject
+	 than the catch will get printed here as "handled!",here value is a parameter that is getting passed from async piece of code.And whether reject or resolve
+	 run , finally block will always run and will print "All done!!!".
+	
+	*NOTE- micro queue gets priority and the macro queue comes after.
+	*NOTE- here "then" also return a type of Promise function from itself.
+	Code-	function createPromise(){
+				return new Promise(function exec(resolve, reject){
+					setTimeout(function f(){
+						consolelog("Timer is done!");
+						resolve("resolve done!");
+						//reject("rejected done!")
+					},3000)
+				});
+			}
+			
+			consolelog("start")
+			let x = createPromise();
+			consolelog("got a new promise!")
+			x.then(function g(value){
+				consolelog("promise done!",value);
+			}).catch(function h(value){
+				consolelog("handled!",value);
+			}).finally(function i(value){
+				consolelog("All done!!!")
+			})
+			consolelog("end")
+			
+			for(let i = 0; i<100000000000; i++){
+				
+			}
+			
+			
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>async await & fetch api
+	
+	*async-await-
+	Code-	function createPromise(){
+				return new Promise(function exec(resolve, reject){
+					setTimeout(function f(){
+						consolelog("Timer is done!");
+						resolve("resolve done!");
+						//reject("rejected done!")
+					},3000)
+				});
+			}
+			
+			aysnc function consume(){
+			try{
+				consolelog("inside function!")
+				const repsonse = await createPromise();
+				const response1 = await createPromise();
+				consolelog("response is:",response);			//here we will get response of resolve's value as "resolve done!"
+				conoslelog("Hi")
+			}catch{
+				consolelog("handled!");
+			}
+			finally{
+				consolelog("All done!")
+			}
+			}
+			
+			so op- inside function!
+				   Timer is done!
+				   Timer is done!
+				   response is:resolve done!
+				   Hi
+				   All done!
+				   
+			NOTE- here we can only acces the async values or repsonses by using "response" keyword
+			NOTE-  here its behaving like the normal sync code.But it is async.Cause it is following the thread of code.
+			
+			here it is almost same as the "Promise" but here we are not using the "then" ,here we using "async" keyword infront of the function "consume()" and
+			when we are calling the promise function which has async piece of code before that we use "await" keyword and we are capturing it under the "try-catch
+			-finally" block so when we use "resolve()" then the try block will run and if we use "reject()" than it will be captured in the catch block and as we
+			know that finally block will always run.
+	
+	*fetch api- here the "fetch" it self a "Run-Time Env." feature not js feature so here it is doing HTTP request as GET and then we are using .then to get the 
+				value which takes a callback function or say "fetch" return a promise function , and inside ".then" we getting "reponse.json" which is converting
+				the HTTP conetext into JSON format.And this ".then" itself returns a Promise which have the actual JSON content as "value".
+	Code-	fetch("http://type.fit/api/quotes")
+			.then(function f(response){
+				return response.json();
+			})
+			.then(function f(value){
+				return value;
+			})
+			
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------Module 26 Ended---------------------------------------------------------------------
+	
+Module 27 - 18 week - Destructuring and Closure
+	
+	=>Aliasing with destructuring, Destructuring nested objects
+	
+	*Destructuring- it means extracting the values of iteralble and storing them into a new variable by different kind of methods.
+					here iteralbles can be- Array,Object,Set,Nested Array,Nested Object.
+					
+		*Array destructuring-
+		
+			Ex.1-	let nums = [10,20,30];
+					const[a,b,c] = nums;
+					consolelog(a);
+					consolelog(b);
+					consolelog(c);
+					
+					so op- 10
+						   20
+						   30
+				
+			Ex.2- for String-
+					let [firstName,surname] = "Vishal kapoor".split(" ");
+					consolelog(firstName);
+					consolelog(surname);
+					
+					so op- Vishal
+						   kapoor
+						   so here we can get the firstName and surname separately just using split and destructuring and accessing the values.
+						   
+			Ex.3-	let nums = [10,20,30,40,50]
+					const[a,,c,,e] = nums;
+					consolelog(a);
+					consolelog(c);
+					consolelog(e);
+					
+					so op- 10
+						   30
+						   50
+						   
+						   so here without defining each value we can just skip that.
+						   
+			Ex.4-	let [a,b,c] = "hello";
+					consolelog(a);
+					consolelog(b);
+					consolelog(c);
+					
+					so op- h
+						   e
+						   l
+						   
+			Ex.5-	let [a,b,c] = new Set(1,1,2,2,2,3,3,3,3);
+					consolelog(a);
+					consolelog(b);
+					consolelog(c);
+					
+					so op- 1
+						   2
+						   3
+						   
+		*Object destructuring-
+		
+			Ex.1-	let user = {};
+					[user.firstName,user.surname] = "Ranbir Kapoor".split(" ");
+					consolelog(user.firstName);
+					consolelog(user.surname);
+					
+					so op- Ranbir
+						   Kapoor
+						   
+						   so here we have first just declared a object than we just defined its values by destructuring.
+						   
+			Ex.2-Swap values-
+					let firstName = "John";
+					let surname = "Doe";
+					
+					[surname,firstName] = [firstName,surname];
+					consolelog(firstName);
+					consolelog(surname);
+					
+					so op- Doe
+						   John
+						   
+			Ex.3-	let employee = {
+						empId:1,
+						userName:"johndoe"
+					}
+					
+					{empId,userName,depart} = employee;
+					consolelog(empId);
+					consolelog(userName);
+					consolelog(depart);
+					
+					so op- 1
+						   johndoe
+						   undefined
+						   
+						   so here we just destructuring the object and getting the values,here also we are trying to access the values which is not there so 
+						   we will get it as "undefined" value.
+						   
+						NOTE- In object, we can access the values by just using "{}"brackets
+							  In array, we can access the value by just using "[]"brackets
+							  
+			Ex.4-	let employee = {
+						empId:1,
+						userName:"johndoe"
+					}
+					
+					{empId:id, userName:name, depart:dep} = employee;
+					consolelog(id);
+					consolelog(name);
+					consolelog(dep);
+					
+					so op-  will be same as upper code.
+					
+							so here we just defining the new name of the values by using as example "empId:id"
+							
+			Ex.5-	let employee = {
+						name:"John",
+						age:30,
+						city:"Delhi",
+						occupation:"Engineer",
+						hobbies:['coding','music','travel']
+					}
+					
+					const {name,age,occupation} = employee;
+					consolelog(name);
+					consolelog(age);
+					consolelog(occupation);
+					
+					so op- John
+						   30
+						   Engineer
+						   
+						   so here the concept used same as array.
+						   
+			Ex.6- Smart Function Parameters-
+					let employee = {
+						name:"John",
+						age:30,
+						city:"Delhi",
+						occupation:"Engineer",
+						hobbies:['coding','music','travel']
+					}
+					
+					function specialFunc({occupation,name,age}){
+						consolelog('Name:${name}');
+						consolelog('Occupation:${occupation}');
+						consolelog('Age:${age}');
+					}
+					
+					specialFunc(employee);
+					
+					so op- John
+						   Engineer
+						   30
+						   
+						   so here we can see that we are directly passing the object into the function & we are not defining manually to the function for the 
+						   parameters, instead we just using the "{}" and passing the values in the unordered way but its anyways getting the values directly.
+						   
+			Ex.7- Nested Objects-
+					let employee = {
+						name:"John",
+						age:30,
+						city:"Delhi",
+						occupation:"Engineer",
+						hobbies:['coding','music','travel']
+						comments:{
+							id:'1234',
+							date:'20 july 2021',
+							post:'This looks good!!!'
+						}
+					}
+					
+					{name,age,comments:{id:commentId,post}} = employee;
+					
+					consolelog(commentId);
+					consolelog(post);
+					
+					so op- 1234
+						   This looks good!!!
+						   
+						   so here we are getting the values of nested objects by using "comments:{id:commentId,post}" and here we are also changing the value
+						   name
+						   
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Spread and Rest Operators
+	
+	*NOTE- these "..." dots represent both the Spread and Rest Operators.
+	
+	*Spread Operator - iterable -> single arguments
+					   Ex.- [10,20,30] -> 10,20,30
+					   
+	*Rest Operator - single arguments -> iterable
+					 Ex.- 10,20,30 -> [10,20,30]
+					 
+	*Spread Operators- 
+	
+		Ex.1-	//new array
+				let nums = [10,20,30]
+				let newArr = [...nums]
+				
+				consolelog(newArr)
+				
+				so op- [10,20,30]
+						so here we just copying the values of the array and creating the new array.
+						
+		Ex.2-	//adding new values
+				let nums = [10,20,30]
+				let newArr = [...nums,40]
+				
+				consolelog(nums)
+				consolelog(newArr)
+				
+				so op- [10,20,30]
+					   [10,20,30,40]
+					   
+		Ex.3-	//new object & adding property in new Object
+				let obj = {
+					name:'PW Skills',
+					course:'Full Stack Development'
+				}
+				
+				let newObj = {...obj, rating:5}
+				
+				consolelog(newObj);
+				
+				so op- name:'PW Skills',
+					   course:'Full Stack Development'
+					   rating: 5
+					   
+					   so here we have just copied a object and created a new one and added the new property in it.
+					   
+		Ex.4-	//concatenate the array
+				let arr1 = [10,20]
+				let arr2 = [30,40]
+				
+				let newArr = [...arr1, ...arg2]
+				consolelog(newArr);
+				
+				so op- 10,20,30,40
+				
+		Ex.5-	//spread an array of arguments as individual params
+				let nums = [10,20,30]
+				
+				function calculateMax(num1,num2,num3){
+					return Math.max(num1,num2,num3);
+				}
+				
+				let ans = calculateMax(...nums);
+				consolelog(ans);
+				
+				so op- 30
+				
+				so here when we are passing the array than it is passing all its elements as "...nums" and we are accessing them as "num1,num2,..."
+				
+		Ex.6-	//can be used with strings
+				let name = "PW Skills"
+				let arr = [...name]
+				
+				consolelog(arr);
+				
+				so op- 'P','W',' ','S','k','i','l','l','s'
+						so here we getting the array as separated we can do this using ".split" also
+						
+		Ex.7-	//concatenate objects using operators
+				let obj1 = {
+					name:'PW Skills',
+					course:'Full Stack Development',
+					rating:4
+				}
+				
+				let obj2 = {
+					area:'Delhi',
+					state:'central',
+					rating:'5'
+				}
+				
+				let newObj = {...obj1, ...obj2};
+				
+				consolelog(newObj);
+				
+				so op- 	name:'PW Skills',
+						course:'Full Stack Development'
+						area:'Delhi',
+						state:'central',
+						rating:'5'
+						
+				so here we have just concatenated the objects.
+				NOTE- here we have same keys as 'rating' but the system will always override that key and the key will be present where the last one is defined.
+					  so thats why we have rating as 5 in final object.
+		
+
+	*Rest Operators-
+	
+		Ex.1.-	//collecting all remaining parameters in a function
+				function newArr(...nums){
+					return nums.reduce((prev,curr)=>prev+curr,0);
+				}
+				
+				consolelog(newArr(10,20,30) )
+				
+				so op- 60
+				so here as we have passed the values as operator in function so it works as Rest operator here
+				
+		Ex.2-	//destructuring using Rest operator
+				let arr = ['HTML','CSS','JS','React','Node','Express','Git']
+				let [element1,element2, ...remainElements] = arr;
+				consolelog(element1,element2);
+				consolelog(remainElements);
+				
+				so op- HTML,CSS
+					   JS,React,Node,Express,Git
+					   
+					   so here you can see for getting define the other values, we have just used the Rest operator here.
+					   
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>IIFE, pure function, and function currying
+	
+	*IIFE[Immediately Invoked Function Expression]- this is the function which runs immediately after defining it.
+	
+		*It is written like-	1.(function(){
+									
+								})()
+								
+								2.(async function(){
+								
+								})()
+								
+								3.(()=>{
+									consolelog("This is a self invoking function!")
+								})()
+								
+		*Applications of IIFE-
+		
+			*Ex1-	//avoid pollution of the global variables
+					const greet = 'global variable';
+					
+					const greeting  = ()=>{
+						return 'hello global function';
+					}
+					
+					(()=>{
+						const greet = 'IIFE variable';
+						
+						const greeting  = ()=>{
+						return 'hello IIFE function';
+					}
+					
+					consolelog(greet);
+					consolelog(greeting());
+					})()
+					
+					consolelog(greet);
+					consolelog(greeting());
+					
+					so op- IIFE variable
+						   hello IIFE function
+						   global variable
+						   hello global function
+						   
+						   so here the IIFE function can avoid the global scopic area of the variables cause it has its own scope which can be understood
+						   using this code.
+						   
+			*Ex2-	//data privacy
+					(()=>{
+						let password = '4126';
+						
+						const showPassword = ()=>{
+							consolelog('Password is:',password);
+						}
+						
+						showPassword();
+					})()
+					
+					showPassword();
+					
+					so op- Password is:4126
+						   Error
+						   
+						   so here you can see that first we called the showPassword() inside the IIFE function so thats why it gives this answer and when we
+						   try to call the function from global, it wont call cause it has private property to get exposed privately.
+						   
+			*Ex3-	//module pattern 
+					let checkBalance = (()=>{
+						let balance = 0;
+						
+						return {
+							increment(){
+								balance++;
+							},
+							reset(){
+								balance = 0;
+							},
+							check(){
+								return balance;
+							}
+						}
+					})()
+					
+					checkBalance.increment();
+					checkBalance.increment();
+					consolelog(checkBalance.check());
+					checkBalance.reset();
+					consolelog(checkBalance.check());
+					
+	*Pure Function- it returns same output for the same input.
+					Ex-	function add(x,y){
+						return x+y;
+					}
+					consolelog(add(10,20));
+					
+					so op- 30
+						   so here for the same ip it gives the same op, as it is not getting dependending on the outer variable which can change its value.
+						   
+	*Impure Function- it returns the different op for the same ip.
+					Ex-	let sum = 1;
+						function add(x){
+							return sum+=x;
+						}
+						
+						consolelog(add(40));
+						
+						so op- 41
+							   so here we can see that if we change the sum value from 1 to 2, the whole function and result can get manipulated so thats why
+							   it is called impure function cause it returns the different op for the same ip.
+							   
+	*Currying- Function currying is a technique where a function with multiple arguments is transformed into a sequence of functions, each taking one argument 
+			   at a time.
+			   Ex-	function volume(length){
+						return function width(width){
+							return function breadth(breadth){
+								return length*width*breadth;
+							}
+						}
+					}
+					
+					let result = volume(3)(4)(5);
+					consolelog(result);
+					
+					so op- 60
+						   so here as we can see, how the function currying works.
+						   *NOTE- here we can understand that each argument will go for the new function.
+						   *Advantage- using it we can add the new functions easliy so that we can get the reusability of the code easliy.
+						   
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>First Program in Closure and Understanding Closure
+	
+	*Closures- when a function remembers its scope(values) even after its executed then it is called closure.
+	
+	Code-	function outer(num){
+				return function inner(){
+					consolelog(num);
+				}
+			}
+			
+			const newFunc = outer();
+			newFunc();
+			
+			so op- 10
+			
+			so here, first the global execution context will be created then the function outer will be as it is get written in the memory part as it is & also
+			in the code.Now in the code new execution context will be created "inner" function will get defined in the code part and also in the memory part
+			the num will be defined also in the code,now after its execution it will get deleted now in the global execution context the "newFunc"will be copied
+			as it is but there is a case, before deleteing the execution context of the "inner" function all its memory will be passed to the "newFunc" so thats 
+			why it can remember the last value of the closure.So here the "inner" is closure.
+	
+	
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------Module 27 Ended--------------------------------------------------------------------------
+	
+Module 28- 19 Week - Object Oriented JS
+	
+	=>Introduction to (OOPS, Class, new Keyword & Factory Function )
+	
+	* OOPS has 4 types- 
+		*Inheritance
+		*Polymorphism
+		*Abstraction
+		*Encapsulation
+		
+	*Class- 
+	 Ex-	class Person{
+				constructor(name,age){
+					this.name = name;
+					this.age = age;
+				}
+				observation = 'Observed'
+				static observation2 = 'Observed2'
+				greet(){
+					console.log('Hello, my name is ${this.name} and my age is ${this.age}.')
+				}
+			}
+			
+			let newPerson = new Person('Rahul',25);
+			newPerson.greet();
+			console.log(newPerson.observation);
+			console.log(newPerson.observation2)					//op- undefined
+			
+			so op- Hello, my name is Rahul and my age is 25.
+				   Observed
+				   undefined
+				   
+				*NOTE- here we can not define the variable 'observation' as 'let observation' cause class is just a word, there is nothing like class cause it
+					   is an object as we know if we make object then we define like-
+					   Person{
+							observation:'hello'
+					   }
+				
+				*NOTE- if we define 'static' keyword than we can not access it outside the class, we can access it just by using class name like 'Person.observation2'.
+				
+				*Writting the method inside a function using 'prototype' keyword.
+				 Ex-	function NewPerson(name,age){
+							this.name = name;
+							this.age = age;
+						}
+						
+						NewPerson.prototype.greet = function(name,age){
+							console.log('Hello, my name is ${this.name} and my age is ${this.age}.')
+						}
+						
+						let rahul = new NewPerson('Rahul',25);
+						rahul.greet();
+						
+						so op- Hello, my name is Rahul and my age is 25.
+						
+	*Factory Function- in the factory function we don't need to use the new keyword to create the new object.We can directly use it.We can understand it by just
+					   comparing the constructor function & factory function.
+					   
+					   Ex.- //Constructor Function
+					   
+					        function Person(name,age){
+								this.name = name;
+								this.age = age;
+								
+								let greet = function (){
+									consolelog('Hello, my name is ${this.name} and my age is ${this.age}.');
+								}
+							}
+							
+							let rahul = new Person('Rahul',25);
+							rahul.greet();
+							
+							so op- Hello, my name is Rahul and my age is 25.
+							
+							
+							//Factory Function
+							
+							function Person(name,age){
+								return{
+									name:name,
+									age:age,
+									greet:function(){
+										consolelog('Hello, my name is ${this.name} and my age is ${this.age}.');
+									}
+								}
+							}
+							
+							let jane = Person('Jane',24)
+							jane.greet();
+							
+							so op- Hello, my name is Jane and my age is 24.
+							
+							
+							so here after comparing both of them, we can see that the Factory Function does not need the new keyword to create the new Object.
+							
+							
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	=>Encapsulation Abstraction & Getter Setter
+	
+	*

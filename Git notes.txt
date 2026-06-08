@@ -1,0 +1,104 @@
+
+
+Git
+
+NOTE- git init - when ever we create a folder than we use this command than this makes that folder a repository.
+
+1. pwd- present working directory
+
+2. ls- shows folders or files in the current folder
+
+3. git status - it shows the current branch we are working on
+
+4. touch - it cretates the file 
+		   ex.-  touch hello.txt , it will create a txt file in that folder
+		   
+5. git add - it helps to add the file for staging area
+   git add . - it helps to add the all the files for staging area
+   git add hello.txt - it helps to add that specific file for the staging area
+   
+4. git commit - it finally commits the code
+   git commit -m"first added file" - here we add the message , and carefull that always this command or else wimp will get opened
+   
+5. git log - it will show all the commit changes in details
+   git log --oneliner - it will show all the commit made in short lines one liner
+   
+6. git config --global - to set up your username and email globally & also demonstrates how to change your default commit editor to VS Code to simplify the workflow.
+
+7. git ignore - whenever we have sensitive info, which we do not want to push in out repo , and we wanna ignore it , by using "touch .gitignore" , it will create a .gitignore 
+				named file and suppose we have some sensitive info like ".env" file than inside .gitignore file we can declare the .env file by just name and then it won't be
+				shown in the git status next time.
+
+	NOTE- suppose we do not know which files are sensitive or not than we can go to web and just search for "git generator" and there select ur tech stack and the files to be
+		  ignored will get generated , so just copy them and paste it in ur .gitignore file and work done.
+		  
+8. cat .gitconfig - it shows the global config file where username, email, sign in key and the editor are saved.
+
+9. git branch - when we run this command , it shows all the available branches
+   git branch feature - when we run this command than it changes from the current branch to named "feature" branch or any named branch availbale.
+   
+10. git checkout feature - when we run this command than it changes the branch from that current branch.
+	git switch feature - same
+
+11. git merge feature - so suppose we are on main branch and we wanna bring the change of feature branch into our new main branch than we will use this command.
+	git merge main	- so suppose we are on feature branch and we wanna bring the change of main branch into feature branch than we use this command.
+	
+12. git diff -  suppose if u have made some changes to ur code after last commit and when u type this command than it will show all the made changes made by u after that commit
+				and if you suppose after making changes , u have commited the code than git diff won't work , it works only before made done the commit and made changes after
+				commit.			
+	git diff ProductService.java - it will show all the code changes.
+	git diff a1b2c3 d4e5f6 - than it will show the changes between those commits.
+	
+	NOTE - "-----"it shows removed content & "+++++" it shows added content
+	
+13. git stash - suppose i have not made the code changes till commit but i need to work on different branch but git will not let me change the branch before commiting so we can 
+				use this command so it will save the code in the library till we come back on that branch again and continue the work from there.
+	git pop - when we run this command than this will recover the code from where it left whitout commit.
+	git stash list - when we write this command than it will give all the stash files which are left there.
+	git stash drop - it will delete the stashed memory.
+	
+14. git rebase feature - suppose when we are working on two diff branches and suppose the main branch also has several commit and feature has also and when we merge them then the
+					     extra commit gets created and we have alot of history that gets created unneccessary so for avoiding it we use the git rebase command
+						 
+						 suppose we have - 
+						 
+							A --- B --- E --- F   (main)
+								   \
+									C --- D       (payment-feature)
+		
+	->	next we do
+							git checkout payment-feature
+							git merge main
+	
+							A --- B --- E --- F -------- M
+								   \                   /
+									C --- D ----------
+									
+							so here u can see M is the extra commit which got created
+							
+	->we do 
+							git checkout payment-feature
+							git rebase main
+							
+							A --- B --- E --- F --- C' --- D'
+							
+							so here u can see that we are not creating the another commit and we are just clearing the history and having single history and one less commit.
+							
+	NOTE- only use the git rebase when you are not on the main branch else it will remove the main branch history and gets merged into the feature branch.
+	
+
+NOTE- setup of github to ur local git can be done, for that check the github website and there u will get the info.
+
+15. git remote -v -  when we run this command than this shows all the connected remote repository, and suppose if we have not connected to any than it won't show anything.
+	git remote add origin http://github.com/shivansh97/demo-project - when we run this command than this connect the local repository to the remote or cloud repository.
+
+16. git push - suppose if u have made commits and finally want to store in the remote repository than we use this command.
+	git push -u origin main - when we run the push for the first time than we run this command cause it creates a stream for that branch or repo, than from the next time we 
+							  can normally use the git push command for pushing the code in the repository.
+							  
+							  NOTE- always commit before the push.
+							
+17. git fetch -  when we run this command than it brings the info from the remote repository but not changes into our main code.
+	git pull origin main - when we run this command than it brings the info from the remote repository and changes into our main code.(changes will be merged into main)
+						   git pull = git fetch + git merge
+						   
