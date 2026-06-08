@@ -102,3 +102,4 @@ NOTE- setup of github to ur local git can be done, for that check the github web
 	git pull origin main - when we run this command than it brings the info from the remote repository and changes into our main code.(changes will be merged into main)
 						   git pull = git fetch + git merge
 						   
+18. git init - always use to make any file as git repository.
