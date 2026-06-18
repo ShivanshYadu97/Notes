@@ -36,6 +36,7 @@ NOTE- git init - when ever we create a folder than we use this command than this
 
 9. git branch - when we run this command , it shows all the available branches
    git branch feature - when we run this command than it changes from the current branch to named "feature" branch or any named branch availbale.
+   git branch -m main - to rename the master branch into main branch.
    
 10. git checkout feature - when we run this command than it changes the branch from that current branch.
 	git switch feature - same
@@ -91,6 +92,7 @@ NOTE- setup of github to ur local git can be done, for that check the github web
 
 15. git remote -v -  when we run this command than this shows all the connected remote repository, and suppose if we have not connected to any than it won't show anything.
 	git remote add origin http://github.com/shivansh97/demo-project - when we run this command than this connect the local repository to the remote or cloud repository.
+	git remote set-url origin https://github.com/USERNAME/NEW-REPO.git - for changing the remote repository.
 
 16. git push - suppose if u have made commits and finally want to store in the remote repository than we use this command.
 	git push -u origin main - when we run the push for the first time than we run this command cause it creates a stream for that branch or repo, than from the next time we 

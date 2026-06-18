@@ -1,0 +1,314 @@
+SQL Query questions - 
+
+=> Code		- 
+   p.code	- 
+
+1. SQL Query to update the DateofJoining to 15-jul-2012 for empid=1
+
+=> Code - 	 UPDATE Employee SET DateofJoining = '15-jul-2012' WHERE EmpId = 1
+   p. code - UPDATE table_name SET column_name = value WHERE condition
+   
+   NOTE- here UPDATE statement is a DML(Data Manipulation Language) statement so it won't autocommit we will have to commit , if we don't want changes than we can RollBack.
+	     UPDATE ek DML (Data Manipulation Language) statement hai, isliye jo changes tum karte ho wo temporarily save hote hain, permanently nahi.
+		 For permanently change run - COMMIT , isse permanently data change aur save hojayega.
+		 FOR getting the previous value - RollBack , isse previous value wapas aa jayegi.
+		 DML Statements are:
+							INSERT
+							UPDATE
+							DELETE
+							MERGE (advanced)
+   
+2. SQL Query to select all the student name where age is greater than 22.
+
+=> Code - 	SELECT * FROM STUDENT WHERE AGE>22
+   p.code- 	SELECT * FROM table_name WHERE condition
+   
+3. SQL Query to find all employee salary between 40000 & 80000.
+
+=> Code1  - SELECT * FROM Employee WHERE Salary BETWEEN 40000 AND 80000
+   p.code - SELECT * FROM table_name WHERE column_name BETWEEN condition AND condition
+   Code2  - SELECT * FROM Employee WHERE Salary>40000 AND Salary<80000
+   p.code - SELECT * FROM table_name WHERE condition AND condition
+   
+4. SQL Query to find name of employee beginning with S.
+
+=> Code		- SELECT * FROM Employee WHERE FirstName LIKE 'S%'
+   p.code	- SELECT * FROM table_name WHERE column_name LIKE condition
+   
+   NOTE 1- yahan par % ka mtlb hai 'S' ke baad jo bhi alphabets aate ho, but S starting mai hona chahiye
+   NOTE 2- yahan par LIKE use hua hai = nahi kyunki jab bhi humein Multiple data fetch karne ho like 'S' related toh LIKE use karte hain kyunki agar '=' use kiya toh firstName jiska
+		   exact 'S%' hoga wo use hi utha kar layega.
+		   
+5. SQL Query to display full name.
+
+=> Code		- SELECT FirstName || ' ' || LASTNAME FROM Employee
+   p.code	- SELECT column_name1 || ' ' || column_name2 FROM table_name
+   
+   NOTE 1- yahan par ye bhi use kar sakte the - SELECT CONCAT(FirstName,LASTNAME) FROM Employee , but isse ye hoga ki firstName aur lastName ke bich space nahi aayega like-rahulpandey
+   NOTE 2- CONCAT - iska use ek table ke 2 column ko jodne ke liye use hota hai.
+
+6. Write a query to fetch details of employees whose EMPLOYEE Firstname ends with an alphabet 'A' and contains 4 alphabets.
+
+=> Code		- SELECT * FROM Employee WHERE FirstName LIKE '___A'
+   p.code	- SELECT * FROM table_name WHERE column_name LIKE condition
+   
+   NOTE- yahan par last char A hoga but uske pehle 3 underscore lagaya hai '_' jiske karan total 4 char ka alphabet ka op aayega agar likhe 'N__A' toh op aayega NEHA so isse hum start
+		 and ending char bhi decide kar sakte hain.
+		
+7. Write a query to fetch details of all employees excluding the employees with first names, "ANUSHKA" and "SOMNATH" from the Employee table.
+
+=> Code		- SELECT * FROM Employee WHERE FirstName != 'DEEPAK' AND FirstName != 'ANKIT'
+   p.code	- SELECT * FROM table_name WHERE column_name1 != 'name1' AND column_name1 != 'name2'
+   Code		- SELECT * FROM Employee WHERE FirstName NOT IN ('DEEPAK','ANKIT') 
+   
+   NOTE- IN or NOT IN - jahan par bhi condition badi ho compare karne ki kisi List se toh wahan par hum IN ya fir NOT In operators use karenge.
+   
+8. SQL query to display the current date?
+
+=> Code		- SELECT SYSDATE FROM DUAL
+   p.code	- 
+   
+   NOTE- SYSDATE - system date
+		 CURRENT_DATE - current date
+		 CURRENT_TIMESTAMP - current time stamp
+		 SYSTIMESTAP - system time stamp
+		 
+9. SQL Query to get day of last day of the previous month?
+
+=> Code		- SELECT TO_CHAR(LAST_DATE(ADD_MONTHS(SYSDATE)),'DAY') FROM DUAL
+   p.code	- 
+   
+   NOTE- agar mai yahan likhun SELECT ADD_MONTHS(SYSDATE) FROM DUAL, toh ye galat query hai kyunki ADD_MONTHS(arg1,arg2) , ye 2 arguments leta hai,aur likhein-
+		 ADD_MONTHS(SYSDATE,3) toh isse 3months plus ka date dega, current date- 13 Jun, after this function op hoga - 13 Sep,and suppose if we write LAST_DATE(ADD_MONTHS(SYSDATE)),
+		 than it will show the Last date of that selected month suppose we were getting 13 Sep now we will get 30 Sep,now after this query- TO_CHAR(LAST_DATE(ADD_MONTHS(SYSDATE)),'DAY')
+		 we  will get the 'Day' of that particular date as 'MONDAY'.
+		 
+10. Write an SQL query to fetch the employee FIRST names and replace the A with '@'.
+
+=> Code		- SELECT REPLACE(FirstName,'A','@') From Employee
+   p.code	- SELECT REPLACE(column_name, arg1, arg2) FROM table_name
+			  here arg1,arg2 - column's selected alphabet to be replaced from arg1 to agr2
+			  
+			  
+11. Write an SQL query to fetch the domain from an email address
+
+=> Code		- SELECT SUBSTR(EmailId, INSTR(EmailId,'@')+1) From Employee , op- gmail.com
+   p.code	- 
+   
+   NOTE- INSTR(EmailId,'@') - here it will give the position of that @ in that domain suppose shiv@gmail.com so op would be - 5 kyunki index 1 se start hai toh @ ki position 5 hai
+		 SUBSTR(column_name, arg1, arg2[exception]) - here it gives the substring of that selected column , here arg1 - starting index, arg2 - size of that substring(na bhi de chalega) 
+		 
+12. Write an SQL query to update the employee names by removing leading and trailing spaces.
+
+=> Code		- UPDATE Employee SET FirstName = LTRIM(RTRIM(FirstName))
+   p.code	- UPDATE table_name SET column_name1 = LTRIM(RTRIM(column_name1))
+   
+   NOTE- LTRIM - remove the spaces from left side of that string or column
+		 RTRIM - remove the spaces from right side of that string or column
+		 
+13. Write an SQL query to fetch all the Employees details from Employee Table who joined in the Year 2020.
+
+=> Code1	- SELECT * FROM Employee WHERE DateofJoining BETWEEN '1-JAN-2020' AND '31-JAN-2020'
+   p.code	- SELECT * FROM table_name WHERE column_name BETWEEN 'condition1' AND 'condition2'
+   Code2	- SELECT * FROM Employee TO_CHAR('DateofJoining','YYYY') = '2020'
+   p.code	- SELECT * FROM table_name TO_CHAR('column_name','YYYY') = 'condition'
+   
+14. Write an SQL query to fetch only odd rows / Even rows from the table.
+
+=> Code1	- SELECT * FROM Employee WHERE MOD(EmpId,2)=0     //For Even
+   p.code	- SELECT * FROM table_name WHERE MOD(column_name,divident)!=result
+   Code2	- SELECT * FROM Employee WHERE MOD(EmpId,2)!=0	//For Odd
+   p.code	- SELECT * FROM table_name WHERE MOD(column_name,divident)!=result
+   
+   NOTE- yahan par MOD function just ek column ke number ko 2 se divide karke check kar raha hai ki result 0 aaye toh even agar na aaye toh odd.
+   
+15. Write an SQL query to create a new table with data and structure copied from another table.
+
+=> Code		- CREATE TABLE Employee2 AS(SELECT * FROM Employee WHERE 1=0)		//it will create new empty table but with other table's columns
+   p.code	- CREATE TABLE table_name2 AS(SELECT * FROM table_name1 WHERE 1=0) // 	table_name2 - new table , table_name1 - table which we are copying
+   
+   NOTE- here we if we write - CREATE TABLE Employee2 AS(SELECT * FROM Employee) , than it will copy all the data from other table and create copy of that table.
+   
+16. Write an SQL query to fetch top 3 HIGHEST salaries.
+
+=> Code		- SELECT Salary FROM 
+			  (SELECT DISTINCT Salary FROM Employee ORDER BY DESC)			// here we treating as separate table
+			  WHERE ROWNUM < 4
+   p.code	- SELECT column_name1 FROM
+			  (SELECT DISTINCT column_name1 FROM table_name ORDER BY DESC)
+			  WHERE ROWNUM < 4
+			  
+			NOTE1- yahan par sirf salary milegi baaki employee details nahi.
+			NOTE2- DISTINCT - DISTINCT keyword duplicate values ko hataane ke liye use hota hai.
+			
+17. Find the first employee and last employee from employee table?
+
+=> Code1	- 	SELECT * FROM Employee WHERE EmpId = (		//This query is taking the condition and return all the table values
+				SELECT MIN(EmpId) FROM Employee 			// this line provides miniumum employee id which will always be 1
+				)
+   p.code	- 	SELECT * FROM table_name1 WHERE column_name1 = (
+				SELECT MIN(column_name1) FROM table_name1
+				)
+   Code1	- 	SELECT * FROM Employee WHERE EmpId = (		//This query is taking the condition and return all the table values
+				SELECT MAX(EmpId) FROM Employee 			// this line provides maximum employee id which will always be 1
+				)
+   p.code	- 	SELECT * FROM table_name1 WHERE column_name1 = (
+				SELECT MAX(column_name1) FROM table_name1
+				)
+				
+				here the Code1 will provide the first employee and Code2 will provide the last employee
+				
+				NOTE- MIN - it provides miniumum digit from that column
+					  MAX - it previous maximum digit from that column
+					  
+18. List the ways to get the count of records in a table.
+
+=> Code		- SELECT COUNT(*) OF Employee		//it will give all the rows count which means records
+   p.code	- SELECT COUNT(*) OF table_name
+   
+			  NOTE- suppose we write - SELECT COUNT(column_name1) OF table_name1 , here column_name1 - any column , table_name1 - table of column_name1, if suppose column_name1 has
+					total 6 rows but there are some values which is suppose 2 values are null than this query will return 4 cause this query do not consider the NULL value.
+					
+20. Write a query to fetch the department-wise count of employees sorted by department's count in ascending order?
+
+=> Code		- SELECT Dept,COUNT(*) FROM Employee GROUP BY Dept
+   p.code	- SELECT column_name1,COUNT(*) FROM table_name GROUP BY column_name1
+   
+			  NOTE- Aggregate functions - COUNT, SUM, AVG, MAX, MIN
+					GROUP BY - where ever we use to group the rows column wise than we use GROUP BY , but we will must have to use Aggregate functions.
+					suppose if we write - SELECT COUNT(*) FROM Employee GROUP BY Dept, than it will just return the counts but when we are writing SELECT Dept,COUNT(*) FROM Employee GROUP BY Dept
+					than that means we will also get the Dept values too which will also be grouped.
+					
+21. Write a query to retrieve Departments who have less than 4 employees working in it
+
+=> Code		- SELECT Dept,COUNT(*) FROM Employee GROUP BY Dept HAVING COUNT(*) < 4
+   p.code	- SELECT column_name1,COUNT(*) FROM table_name GROUP BY column_name1 HAVING COUNT(*) < condition
+   
+			  NOTE- WHERE cannot be used with Aggregate Functions so thats why we use HAVING here.
+			  
+22. Write a query to retrieve Department wise Maximum salary.
+
+=> Code		- SELECT Dept,MAX(Salary) FROM Employee GROUP BY Dept
+   p.code	- SELECT column_name1,MAX(column_name2) FROM table_name GROUP BY column_name1
+   
+			  NOTE- yahan par MAX ko * pass nahi kar sakte yahan par isse koi column_name pass karna hi padta hai.
+			  
+23. Write a query to Employee earning maximum salary in his department.
+
+=> Code		- SELECT * FROM Employee E1
+			  JOIN
+			  (SELECT Dept,Max(Salary) AS Salary FROM Employee GROUP BY Dept)E2
+			  ON E1.Dept = E2.Dept AND E1.Salary = E2.Salary
+   p.code	- SELECT * FROM table_name1 E1
+			  JOIN
+			  (SELECT column_name1,MAX(column_name2) AS column_name2 FROM table_name1 GROUP BY column_name1)E2
+			  ONE E1.column_name1 = E2.column_name1 AND E1.column_name2 = E2.column_name2
+			  
+24. Write an SQL query to fetch the first 50% records from a table.
+
+=> Code		- SELECT * FROM Employee WHERE ROWNUM <=
+			  (SELECT COUNT(*) FROM Employee)/2 
+   p.code	- SELECT * FROM table_name1 WHERE ROWNUM <=
+			  (SELECT COUNT(*) FROM table_name1)/2
+   
+			  NOTE- (SELECT COUNT(*) FROM Employee)/2 - this query will give the count of the total Employee/2
+					FOr 25% Employee - just divide the count by 4
+					
+25. Query to fetch details of employees not having computer
+
+=> Code		- SELECT * FROM Employee E WHERE CompId IS NOT NULL;
+   p.code	- SELECT * FROM table_name1 E WHERE column_name1 IS NOT NULL
+				
+			  NOTE- IS - here if we would have written CompId!=NULL cause for that we have a keyword 'IS'
+   
+			  NOTE- SELECT * FROM Employee E JOIN Computer C ON E.CompId = C.CompId  -  here the CompId is Foreign Key, so on the basis of the match of CompId we will get all the 
+			        values of both the tables.
+					
+26. Query to fetch employee details along with the computer details who have been assigned with a computer.
+
+=> Code		- SELECT * FROM Employee E JOIN Computer C ON E.CompId = C.CompId
+   p.code	- SELECT * FROM table_name1 E JOIN table_name2 C ON E.CompId = C.CompId
+   
+			  NOTE- JOIN - INNER JOIN (JOIN) sirf un rows ko return karta hai jahan dono tables me matching value mil jaye.
+   
+27. Fetch all employee details along with the computer name assigned to them.
+
+=> Code		- SELECT FirstName,NVL(C.Brand,'NOT ASSIGNED') FROM Employee E LEFT JOIN Computer C ON E.CompId = C.CompId
+   p.code	- SELECT column_name1,NVL(C.column_name2,custom_message) FROM table_name1 E LEFT JOIN table_name2 C ON E.column_name3 = C.column_name3
+   
+			  NOTE1- SELECT * FROM Employee E JOIN Computer C ON E.CompId = C.CompId, we know this will return only the matching value according to Foreign key column
+			  NOTE2- LEFT JOIN - SELECT * FROM Employee E LEFT JOIN Computer C ON E.CompId = C.CompId, ab yahan par LEFT JOIN use ho raha hai toh ismai dekha jata hai ki LEFT query 
+					jahan likha hai uske left side wali table ke sare values match kare ya na kare Foreign key of LEFT ke right side wale table se , lekin yahan par ke LEFT 
+					query ke LEFT side wale table ke sare employee details dega aur jahan foreign Key match nahi hoga uspe Automatically NULL value assign kar dega.
+					
+					Suppose hamare pass hai 
+					Employee table - 
+					
+					| EmpId | Name  | CompId |
+					| ----- | ----- | ------ |
+					| 1     | Rahul | 101    |
+					| 2     | Aman  | 102    |
+					| 3     | Shiv  | 103    |
+					
+					Computer table - 
+					
+					| CompId | Brand  |
+					| ------ | ------ |
+					| 101    | Dell   |
+					| 102    | HP     |
+					| 104    | Lenovo |
+					
+					after query - 
+					
+					| EmpId | Name  | Brand |
+					| ----- | ----- | ----- |
+					| 1     | Rahul | Dell  |
+					| 2     | Aman  | HP    |
+					| 3     | Shiv  | NULL  |
+
+					op - yahan par dekh sakte hain ki op mai LEFT query ke left side wali table ki sari data kuch bhi hojaye OP mai aayegi lekin right ki tabhi aayegi jab match kre.
+
+			  NOTE3- suppose we want specific data in our op like specific column than we can use - SELECT FirstName,C.Brand , so here we will get the 2 columns and see here we have 
+					 here we have used C.Brand cause we can not use Brand directly cause Ambiguity will happen cause of 2 Tables.
+			  NOTE4- NVL - here till the query - SELECT FirstName,C.Brand FROM Employee E LEFT JOIN Computer C ON E.CompId = C.CompId, we will get the NULL values too in the columns 
+					 so for that we have another function named as NVL which removes the NULL value with Custom message - so overall query will be - 
+					 SELECT FirstName,NVL(C.Brand,'NOT ASSIGNED') FROM Employee E LEFT JOIN Computer C ON E.CompId = C.CompId
+
+
+28. Fetch all Computer Details along with employee name using it
+
+=> Code		- SELECT * FROM Employee E RIGHT JOIN Computer C ON E.CompId = C.CompId
+   p.code	- SELECT * FROM table_name1 E RIGHT JOIN table_name2 C ON E.column_name1 = C.column_name1
+   
+			  NOTE- this is just opposite of LEFT JOIN cause yahan par just right side wale sare data aayenge RIGHT JOIN ke baad wale aur uske left side wale sare sirf matched data 
+					hi aayenge.
+					
+29. Delete duplicate records from a table
+
+=> Code		- DELETE FROM Employee WHERE EmpId IN
+			  (
+			  SELECT D1.EmpId FROM Employee E1 JOIN Employee E2 ON 
+			  D1.FirstName = D2.FirstName AND
+			  D1.lastName = D2.lastName AND
+			  D1.Salary = D2.Salary AND
+			  D1.ManagerId = D2.ManagerId AND 
+			  D1.DateofJoining = D2.DateofJoining AND
+			  D1.EmpId > D2.EmpId
+			  )
+   p.code	- NA
+   
+			  NOTE1- here 2nd query will give the EmpId from this query line - 'SELECT D1.EmpId', which means D1 table's row will get eliminated
+			  NOTE2- SELF JOIN - this question is the example of INNER JOIN.
+			  NOTE3- this query line - 'D1.EmpId > D2.EmpId' which diffrentiate the duplicate values cause ID's cannot be same ever.
+			  
+30. Find Nth Highest salary
+
+=> Code		- SELECT E1.Salary,COUNT(DISTINCT E2.Salary) FROM Employee E1 JOIN Employee E2 ON E1.Salary<=E2.Salary GROUP BY E1.Salary HAVING COUNT(DISTINCT E2.Salary)
+   p.code	- NA
+   
+			  NOTE1- COUNT(DISTINCT E2.Salary) - yahan par E2 table ke sare Duplicate values ko remove ya ignore kiya ja raha hai
+			  NOTE2- GROUP BY E1.Salary - yahan par GROUP BY E1 ke sare duplicate salaries wale row ko merge kar raha hai 
+			  NOTE3- now jab ab COUNT nikala jayega  toh dono ke unique values ko compare kiya jayega aur OP sare Salaries ke rankings degi
+			  NOTE4- GROUP BY E1.Salary used cause of Aggregate Function used as COUNT.
+			  NOTE5- HAVING COUNT(DISTINCT E2.Salary) - this will give the rank of that salary.
+			  

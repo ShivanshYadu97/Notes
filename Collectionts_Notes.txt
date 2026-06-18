@@ -1,0 +1,248 @@
+
+1.Iterable🟡 - 
+			=> Iterable is used for traversing using [for-each] or fetching the data.
+			=> it is the parent of Collection & Map interface.
+			=> 🛑forEach Method - it has one more method to traverse the Collection and Set interface too.
+	
+
+	1.Collection🟡[1.2v] -
+							=>NOTE - Iterator🟡 -
+												 => it provides the Traversal in the Forward Direction.
+												 => it is having "has A" relationship with the Collection.
+												 
+
+		Types of it-
+		
+		1.List🟡 - 
+				=> NOTE- ListIterator🟡 - 
+										 => it provides the Traversal in the Backward Direction.
+										 => it is having "has A" relationship with the List.
+				=> indexed collection [0,1,2,3,..]
+				=> it does not maintain the order like where the item left , item will be left there.
+				=> duplicates are allowed.
+				
+				Types of it-
+				
+				1.ArrayList✅ - 
+								=> dynamic array
+								=> Automatically size increases
+								=> Thread-Safe Class - means it can run two objects at the same time or simultaneously.
+								=> More efficient than vector.
+				
+				2.LinkedList✅ - 
+								=> Doubly Linked List
+								
+				3.Vector✅[1.0v] -
+							=> NOTE- Enumeration🟡 - 
+													=>Vector has one extra method of traversing using Enumeration.
+							=> dynamic array
+							=> additional feature cause of legacy class
+							=> Non-Thread-Safe Class - it means it can not run the same object simultaneously.
+							=> Less efficient than ArrayList.
+				 
+							Type of it-
+							
+							1.Stack✅ - 
+										=> LIFO
+			
+		2.Set🟡 - 
+				=> not indexed collection.
+				=> it follows the sorted order, like wherever u insert the object in it , it will get u in sorted manner in return.
+				=> duplicates are not allowed.
+		
+				Types of it-
+				
+				1.HashSet✅ - 
+								=> HashSet is the implmentation class of Set.
+								=> it does not follow the sorting order & the insertion order also is not maintained.
+								
+								Type of it -
+								
+								1.LinkedHashSet✅ - 
+													=> it provides the extra features to the HashSet.Like order preserved and avoding duplicates value.
+				
+				2.SortedSet🟡 - 
+								=> it provides the sorting functionality to the Set.
+								
+								Type of it -
+								
+								1.TreeSet✅ - 
+												=> By default ascending order sorting provide.
+												=> We can write the custom logic for sorting of our made object.
+												=> It is implmentation of Binary Search Tree.
+
+	2.Map🟡 -
+			 => it has key-value pairs.
+			 => here key works as Set cause key can not be duplicate & order can not be preserved in key.
+			 
+			 Types of it -
+			 
+			 1.HashMap✅ -
+						  => it's order is not preserved that means order would be sorted.
+			 
+						  Types of it -
+						  
+						  1.LinkedHashMap✅ -
+											 => key order is preserved that means key won't be sorted.
+						  
+			 2.SortedMap🟡 -
+			 
+						  Types of it -
+						  
+						  1.TreeMap -
+									=> it has keywise sorting or order preserved.
+									
+									
+									
+									
+----------------------------------------------------------------------------------------------------------------------------------
+##################################################################################################################################
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+=> We can create the Collection using two types -
+
+1. Type safe -
+
+	ex.1- ArrayList<String> names = new ArrayList<String> ();
+		  names.add("Ramesh");
+		  names.add("Suresh");
+		  names.add("Riya");
+		  names.add("Piya");
+		  syso(names);
+		  syso(names.get(0));
+		  syso(names.get(1));
+		  
+		  NOTE - so here we can create only the String type of ArrayList cause it is type safe Collection.
+		  
+	ex.2- Vector<String> vector = new Vector();
+		  vector.addAll(names);
+		  
+	ex.3- HashSet<Double> nms = new HashSet<> ();
+		  nms.add(14.14);
+		  nms.add(34.1234);
+		  nms.add(2354.44);
+		  nms.add(99.3);
+		  nms.add(99.3)
+		  nms.add(5.3)
+		  syso(nms);
+		  
+		  Output- [14.14, 5.3, 34.1234, 99.3, 2354.44]
+		  
+		  NOTE- here you can see the insertion order is not maintained and also it is unsorted and also the duplicate values are removed.
+		  
+	ex.4- TreeSet<Double> tset = new TreeSet<>();
+		  tset.addAll(nms);
+		  syso(nms);
+		  
+		  Output- [5.3, 14.14, 34.1234, 99.3, 2354.44]
+		  
+		  NOTE- here u can see that it is getting sorted in op. Sorting happens cause of Comparable and Comparator.
+		  
+	ex.5 - HashMap<String,Integer> price = new HashMap<>();
+		   price.put("Potato",20);
+		   price.put("Tomato",30);
+		   syso(price);
+		   
+		   Output- {Potato=20, Tomato=30}
+		   
+		  
+2. Un-Type safe - 
+	
+	ex.2- LinkedList list = new LinkedList();
+		  list.add("Sachin");
+		  list.add(101);
+		  list.add(625.512);
+		  list.add(true);
+		  
+		  
+=> Traversals -
+
+	NOTE - List can be traversed using 4 types- ListIterator, Iterator, Iterable or for-each & forEach method.
+	
+	1. ArrayList - cause it is the part of List so it can also be get traversed using 3 types.
+	
+				1. for Each loop - Forward Traversal
+				
+								 => ArrayList<String> names = new ArrayList<String> ();
+									names.add("Ramesh");
+									names.add("Suresh");
+									names.add("Riya");
+									names.add("Piya");
+									
+									for(String str:names){
+										syso(str);			//Forward traversal
+										StringBuffer br = new StringBuffer(str);
+										syso(br.reverse());						//each word will get reverse but the order will be forward
+									}
+									
+				2. Iterator - Forward Traversal
+				
+							=> Iterator<String> itr = names.iterator();
+							   
+							   while(itr.hasNext()){
+									String next = itr.next();
+									syso(next);					//Forward traversal
+							   }
+							   
+				3. ListIterator - Backward Traversal
+								NOTE - listIterator extends the Iterator.
+				
+								=> ListIterator<String> ls = names.listIterator(names.size());		//cursor needs to start from backside so thats why we provided size here
+								   
+								   while(ls.hasPrevious()){
+										String previous = ls.previous();
+										syso(previous);					//Backward traversal
+								   }
+								   
+				NOTE- Enumeration -  it can be used inside Vector only.
+				
+				
+				4. forEach method - Forward Traversal
+				
+								  NOTE - here we provide the Consumer to the forEach cause the Consumer is a Functional Interface so thats why we had to use lambdas expression here.
+								  
+								  => names.forEach(e->{
+										syso(e);		//Forward Traversal
+									})
+									
+				
+	NOTE- Set can be traversed using 2 types
+					
+	2. TreeSet- cause it is the part of Set so the TreeSet can be traversed using 2 types.
+	
+				1. forEach method - Forward Traversal
+				
+								  => TreeSet<String> set = new TreeSet<>();
+									 set.addAll(names);
+									 
+									 set.forEach(e->{
+										syso(e);
+									 })
+									 
+									 NOTE - using Comparator & Comparable we provide the custom sorting logic. Suppose float,int and for Double values.
+									 
+				2. Iterator - Forward Traversal
+				
+							=> TreeSet<String> ts = new TreeSet<>();
+							   ts.addAll(names);
+							   
+							   Iterator<Integer> it = ts.iterator();
+							   
+							   while(it.hasNext()){
+									syso(it.next());
+							   }
+				
+	3. HashMap - 
+	
+				1. forEach method - 
+								  => HashMap<String,Integer> price = new HashMap<>();
+								     price.put("Potato",20);
+								     price.put("Tomato",30);
+									 
+									 price.forEach((e1,e2)->{		//here e1-key, e2- value
+										syso(e1 + "=>" + e2);
+									 })
+									 
+									Output- Potato => 20
+											Tomato => 30
