@@ -303,12 +303,12 @@ SQL Query questions -
 			  
 30. Find Nth Highest salary
 
-=> Code		- SELECT E1.Salary,COUNT(DISTINCT E2.Salary) FROM Employee E1 JOIN Employee E2 ON E1.Salary<=E2.Salary GROUP BY E1.Salary HAVING COUNT(DISTINCT E2.Salary)
+=> Code		- SELECT E1.Salary,COUNT(DISTINCT E2.Salary) FROM Employee E1 JOIN Employee E2 ON E1.Salary<=E2.Salary GROUP BY E1.Salary HAVING COUNT(DISTINCT E2.Salary)=1
    p.code	- NA
    
 			  NOTE1- COUNT(DISTINCT E2.Salary) - yahan par E2 table ke sare Duplicate values ko remove ya ignore kiya ja raha hai
 			  NOTE2- GROUP BY E1.Salary - yahan par GROUP BY E1 ke sare duplicate salaries wale row ko merge kar raha hai 
 			  NOTE3- now jab ab COUNT nikala jayega  toh dono ke unique values ko compare kiya jayega aur OP sare Salaries ke rankings degi
 			  NOTE4- GROUP BY E1.Salary used cause of Aggregate Function used as COUNT.
-			  NOTE5- HAVING COUNT(DISTINCT E2.Salary) - this will give the rank of that salary.
+			  NOTE5- HAVING COUNT(DISTINCT E2.Salary)=1 - this will give the rank of that salary.
 			  

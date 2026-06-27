@@ -1,0 +1,1397 @@
+########################################################################################################
+--------------------------------------------------------------------------------------------------------
+									NOTES of STREAM API
+--------------------------------------------------------------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+=>We can create the Stream Objects using multiple ways - 
+
+1. Blank
+   ex.- 
+   
+   Stream<Object> emptyStream = Stream.empty();
+   
+2. Arrays, Object & Collections
+   ex.-
+   
+   String names[] = {"Hello","There","What","How"};
+   
+   Stream<String> stream1 = Stream.of(names);
+   stream1.forEach(e->{
+		syso(e);
+   })
+   
+   op- all the names
+   
+   NOTE1- Consumer - a function that returns nothing.
+   NOTE2- on this line "stream1.forEach()" here we have to pass a Consumer Function.
+   
+3. Builder Pattern
+   ex.-
+   
+   Stream<Object> streamBuilder = Stream.builder().build();
+   
+4. Another array method
+   ex.-
+   
+   IntStream stream = Arrays.stream(new int[]{2,4,6,8});
+   
+5. Using Collections
+   ex.- 
+   
+   List<Integer> list2 = new ArrayList<>();
+   list2.add(2);
+   list2.add(4);
+   list2.add(6);
+   list2.add(8);
+   
+   Stream<Integer> stream2 = list2.stream();
+   stream2.forEach(e->{
+		syso(e);
+   })
+   
+
+###############################################################################################
+-----------------------------------------------------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+1. filter - takes Booleans valued function named as Predicate Function
+	
+			NOTE1- filter takes a Predicate function.And we will always have to give the conditions in Booleans.
+			NOTE2- Predicate - Predicate is an interface and it always returns True or False which means Booleans result.
+			
+			ex.1 - 
+			
+			List<String> names = List.of("Shivansh","Shiva","Aman");
+			List<String> result = names.stream().filter(e -> e.startsWith("S")).collect(Collectors.toList());
+			syso(result);
+			
+			op- Shivansh, Shiva
+			
+2. map - takes Function which can return any value
+		
+		NOTE1- map always helps to perform the execution and do the operations suppose ex.- we need to do the square of values.
+		NOTE2- Function - map takes the Function and it always returns the values.
+		
+		ex.1 - 
+		
+		List<Integer> numbers = List.of(2,3,4);
+		List<Integer> result = numbers.stream().map(i->i*i).collect(Collectors.toList());
+		syso(result);
+		
+		op- 4,9,16
+		
+NOTE- using forEach in Streams
+		
+		ex.- 
+		names.stream().forEach(
+			e->{
+				syso(e);
+			}
+		)
+		
+		or 
+	  
+		names.stream().forEach(System.out::println);
+		
+		they both will work same.for the traversal of the list.
+		
+3. sorted -
+
+			ex.-
+			names.stream().sorted().forEach(System.out::println);
+			
+4. min & max - it takes the Comparator & by comparing the x & y value.
+
+		 ex1.-for min-
+		 
+		 Integer result = numbers.stream().min((x,y)-> x.compareTo(y)).get();
+		 syso(result);
+		 
+		 ex2.-for max-
+		 Integer result = numbers.stream().max((x,y)-> x.compareTo(y)).get();
+		 syso(result);
+		 
+
+
+########################################################################################################
+--------------------------------------------------------------------------------------------------------
+									Stream API Questions
+--------------------------------------------------------------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+=>Stream API Questions - 
+
+1. Find the even numbers.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		List<Integer> result = numbers.stream().filter(e-> e%2==0 ).collect(Collectors.toList());
+		syso(result);
+		
+		op- 2,4,6
+
+		
+2. Write a program to convert List of Strings to Uppercase.
+
+Code1-	List<String> names = List.of("Shiv","Ram","Laxman");
+		List<String> result = names.stream().map(String::toUpperCase).collect(Collectors.toList());		//:: -  this is method reference
+		syso(result);
+		
+Code2-	List<String> names = List.of("Shiv","Ram","Laxman");
+		List<String> result = names.stream().map(n -> n.toUpperCase ).collect(Collectors.toList());		// n -> n.toUpperCase  - here we used the lambdas expression
+		syso(result);
+		
+		op- SHIV,RAM,LAXMAN
+
+		
+3. Write a program to find the max value from a list of integers.
+
+Code1-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		Optional<Integer> result = numbers.stream().max(Integer::compareTo);
+		syso(result);
+		
+		op- Optional[6]		//op is Optional cause it is single value 
+		
+Code2-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		Integer result = numbers.stream().min((x,y)-> x.compareTo(y)).get();
+		syso(result);
+		
+
+4. Write a program in java to group strings by their length using the Stream API.
+
+Code-	List<String> names = List.of("orange","apple","guava","peach");
+		Map<Integer,List<String>> result = names.stream().collect(Collectors.groupingBy(String::length));
+		syso(result);
+		
+		op- {
+			  5=[apple, guava, peach],
+			  6=[orange]
+			}
+		
+		NOTE1- groupingBy - this always returns the value in Map format and ye duplicate values ko ka group bana deta hai.
+		NOTE- yahan par kaise pata ki groupingBy hame kis Map format mai save karna hai ?
+			  Formula -
+				groupingBy(X::value)
+
+				Map<
+					X ka value return type,
+					List<Original Stream Object>
+				>
+	
+	
+5. Write a program to check if a list contains any word starting with 'A' using the Stream API.
+
+Code-	List<String> names = List.of("Arun","Anil","Shiva","Varun","aman");
+		List<String> result = names.stream().filter(e-> e.startsWith('A') || e.startsWith('a')).collect(Collectors.toList());
+		syso(result);
+		
+		op- Arun,Anil,aman
+		
+		
+6. Write a program in Java to find duplicate elements in a list using the Stream API.
+
+Code-	List<Integer> numbers = List.of(1,2,2,2,3,6,6,6);
+		Set<Integer> result =  new HashSet<>();
+		Set<Integer> result = numbers.stream().filter(i->!seen.add(i)).distinct().collect(Collectors.toList());
+		syso(result);
+		
+		op- 2,6
+		
+		NOTE1- filter - filter jab response True aata hai toh usse rakhta hai & agar False aata hai toh usse reject kar deta aur nahi rakhta hai.
+		NOTE2- filter(i->!seen.add(i)) - yahan par sare values Set par store toh ho rahe hain lekin wo unique values hain unko reject kiya ja raha hai but jo duplicate values 
+			   hain unhe accept kiya ja raha hai kyunki when we use seen.add(i) use karte hain , aur agar value exist nahi karti toh ye True return karta hai aur baad mai read
+			   karta  hai agar uspe ! laga hai ya nahi that means !seen.add(i) ke liye !true = false final result toh vo value rejcect hojatu hai vahi koi duplicate ho toh 
+			   !seen.add(i) ke liye !false = true that means usse store kar liya jayega.
+		NOTE3- distinct() - yahan par use hua hai kyunki suppose kisi ka occurence 2 baar se zyada hua toh wo store hota chala jayega final List mai instead of being non -duplicate 
+			   we know , so kyunki uss final list mai jitte bhi values store honge wo sare 2 ya usse zyada baar occur hue honge so unka Distinct karke final value duplicates remove
+			   karke de sakte hain.
+
+			   
+7. Write a program in Java to remove Null Values from a List using the Stream API.
+
+Code-	List<String> names = List.of("orange",null,"apple",null,"guava","peach",null);
+		List<String> result = names.stream().filter(i-> i!=Null).collect(Collectors.toList());
+		syso(result);
+		
+		op - ["orange","apple","guava","peach"]
+		
+		
+8. Write a program in java to flatten a list of lists using the stream api.
+
+Code-	List<Integer> list1 = List.of(1,2,3);
+		List<Integer> list2 = List.of(4,5,6);
+		List<Integer> list3 = List.of(7,8,9);
+		List<List<Integer>> numbers = List.of(list1,list2,list3);
+		List<Integer> result = numbers.stream().flatMap(List::stream).collect(Collectors.toList());			//.flatMap(i -> i.stream())
+		syso(result);
+		
+		op- [1,2,3,4,5,6,7,8,9]
+		
+		NOTE- flatMap - flatMap() nested collections ko ek single stream me convert karta hai (flatten karta hai).
+	
+	
+9. Write a program in java to partition numbers into even and odd using the stream API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6,7,8);
+		Map<Boolean,List<Integer>> result = numbers.stream().collect(Collectors.partitioningBy(n -> n%2 == 0));
+		syso("Even :",result.get());
+		syso("Odd :",result.get());
+		
+		op- Even: 2468
+			Odd: 1357
+		
+		NOTE1- partitioningBy() - it always returns a Map<Boolean, ...> because it partitions data into two groups: true and false.	
+		NOTE2- partitioningBy() ka return type hamesha - Map<Boolean, List<T>>
+		
+		
+		
+10. How to find the frequency of elements in a list using Java 8 Streams?
+	or
+	How to group elements in a list and count their occurrences using Java 8?
+	
+Code-	List<String> names = List.of("orange","apple","orange","apple","guava");
+		Map<String,Long> result = names.stream().collect(Collectors.groupingBy(x->x, Collectors.counting()));
+		syso(result);
+		
+		op- [orange] = 2
+			[apple] = 2
+			[guava] = 1
+		
+		NOTE1- yahan par Map<String,Long> return type mai Long type return kar raha hai kyunki, counting() method return mai Long type deta hai.
+		NOTE2- groupingBy(arg1,arg2) - yahan par groupingBy 2 arguments bhi le sakta hai.
+
+		
+11. Write a program to merge two lists into a single list using the Java 8 Streams API?
+
+Code-	List<String> list1 = List.of("orange","apple","guava");
+		List<String> list2 = List.of("peach","grapes","melon");
+		List<String> result = Stream.concat(list1.stream(),list2.stream()).collect(Collectors.toList());
+		syso(result);
+		
+		op- ["orange","apple","guava","peach","grapes","melon"];
+		
+		NOTE1- Stream - here we used Stream which is a class
+		NOTE2- concat() - concat method contains to Stream class which helps to concatenate two lists.
+
+		
+12. Write a program to convert list of integers to their squares using the Java 8 Streams API?
+
+Code-	List<Integer> numbers = List.of(2,3,4);
+		List<Integer> result = numbers.stream().map(i->i*i).collect(Collectors.toList());
+		syso(result);
+		
+		op- 4,9,16
+
+		
+13. Write a program to remove duplicate words from a list using the Java 8 Streams API.
+
+Code-	List<String> names = List.of("orange","apple","orange","apple","guava");
+		List<String> result = names.stream().distinct().collect(Collectors.toList());
+		syso(result);
+		
+		op- orange, apple, guava
+		
+		NOTE- distinct() - this method used to remove the duplicates value.
+	
+	
+14. Write a program to find the first element in a list using the Java 8 Streams API.
+
+Code-	List<String> numbers = List.of("Arun","Varun","Shivansh");
+		numbers.stream().findFirst().ifPresent(System.out::println);
+		
+		op- Arun
+		
+		NOTE1- findFirst() -  ye first element deta hai list ka.
+
+		
+15.	Write a program to calculate the sum of all elements(numbers) in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3);
+		int result = numbers.stream().mapToInt(Integer::intValue).sum();
+		syso(result);
+		
+		op- 6
+		
+		NOTE1- mapToInt() - it is used to convert stream elements into primitive int values and returns an IntStream, which provides numerical operations like sum(), 
+							average(), max(), and min().
+		NOTE2- map()      -> Stream<Integer>
+			   mapToInt() -> IntStream -> sum(), avg(), min(), max()
+		NOTE3- mapToInt(X::Y) - here X -> Stream Object , Y -> Primitive value
+		
+		
+16. Write a program to find elements greater than 10 in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,15,20,9,12);
+		List<Integer> result = numbers.stream().filter(i->i>10).collect(Collectors.toList());
+		syso(result);
+		
+		op-	15,20,12
+	
+	
+17. Write a program to find the length of the longest string in a list using the Java 8 Streams API.
+
+Code-	List<String> names = List.of("apple","jackfruit","guava");
+		int result = names.stream().mapToInt(String::length).max().orElse(0);	//we used orElse here for exception case
+		syso(result);
+		
+		op- 9  //which is jackfruit
+		
+
+18. Write a program to find the second highest element in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,15,20,9,12);
+		Optional<Integer> result = numbers.stream().sorted((a,b)->b.compareTo(a)).skip(1).findFirst();
+		result.ifPresent(System.out::println);
+		
+		op- 15
+		
+		NOTE1- skip() - First element ko ignore karke baaki stream ko aage bhejta hai.
+		NOTE2- a.compareTo(b) -> Ascending order sorting or just using .sorted()
+			   b.compareTo(a) -> Descending order sorting
+			   
+			   
+19.	Write a program to collect odd numbers into a set using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		List<Integer> result = numbers.stream().filter(e-> e%2!==0 ).collect(Collectors.toList());
+		syso(result);
+		
+		op- 1,3,5
+		
+		
+20. Write a program to check if all elements in a list are positive using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		boolean result = numbers.stream().allMatch(i->i>0);
+		syso(result);
+		
+		for ip - 1,2,3,4,5,6
+		op-	True
+		for ip - 1,2,3,4,5,-6
+		op- False
+		
+		NOTE- allMatch() - it means all conditions should be passed or else it will give op False.
+		
+		
+21.	Write a program to skip the first 3 elements in a list using the Java 8 Streams API.
+
+Code-	List<String> names = List.of("orange","apple","guava","peach","grapes","melon");
+		List<String> result = names.stream().skip(3).collect(Collectors.toList());
+		syso(result);
+		
+		op- peach,grapes,melon
+		
+		
+22. Write a program to check if no elements in a list are negative using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		boolean result = numbers.stream().noneMatch(i->i<0);
+		syso(result);
+		
+		op- true
+		
+		NOTE- noneMatch() - exactly opposite of allMatch.
+	
+	
+23. Write a program to find the minimum value in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		Optional<Integer> result = numbers.stream().min(Integer::compareTo);
+		result.ifPresent(System.out::println);
+		
+		
+24.	Write a program to find the average of a list of integers using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5,6);
+		double result = numbers.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+		syso(result);
+		
+		op-	3.5
+		
+		NOTE- average() - it contains to the IntStream and evaluate the average of the list.
+		
+		
+25. Write a program to filter strings containing a specific character using the Java 8 Streams API.
+
+Code-	List<String> names = List.of("orange","apple","guava","peach","grapes","melon","kiwi");
+		List<String> result = names.stream().filter(i->i.contains("a")).collect(Collectors.toList());
+		syso(result);
+		
+		op- "orange","apple","guava","peach","grapes","melon"
+		
+		NOTE- contains() - it finds that character is present or not in the word.
+	
+	
+26. Write a program to convert list of strings to a single concatenated string using the
+	Java 8 Streams AΡΙ.Q. Write a program to convert list of strings to a single concatenated string using the Java 8 Streams AΡΙ.
+	
+Code-	List<String> names = List.of("Shiva","Raj","Varun");
+		String result = names.stream().collect(Collectors.joining(", "));
+		syso(result);
+		
+		op- Shiva, Raj, Varun
+		
+		NOTE- Collectors.joining("") - this returns a Concatenated String in return as single String primitive value.
+
+			  
+27.	Write a program to collect prime numbers from a list using the Java 8 Streams API. //prime numbers - 2,3,5,7,11,..
+
+Code-	public class PrimeNumber(){
+			public static boolean isPrimeNumber(int num){
+			
+				if(num == 2){
+					return true;
+				}
+					
+				if(num<=1){
+					return false;
+				}
+				
+				for(int i = 2; i<=Math.sqrt(num); i++){				// yahan par square liya kyunki agar wo prime number nahi hai toh pakka square ke neche wale values se wo divide ho sakta hai
+					if(num%i == 0){
+						return false;
+					}
+				}
+				
+			}
+			
+			
+			public static void main(){
+			
+				List<Integer> numbers = List.of(2,3,4,5,6,7,8,9,10);
+				List<Integer> result = numbers.stream().filter(PrimeNumber::isPrimeNumber).collect(Collectors.toList());
+				syso(result);
+					
+			}
+		}
+		
+		op-	2,3,5,7
+		
+		NOTE1-	Math.sqrt(num) - ye num ka square root value nikalta hai.
+		NOTE2-	filter(PrimeNumber::isPrimeNumber) - method reference hai ise aise bhi likh sakte hain - filter(num -> PrimeNumber.isPrimeNumber(num))
+		
+		
+28.	Write a program to sort list of strings by length using the Java 8 Streams AΡΙ.
+
+Code-	List<String> names = List.of("Shiva","Raj","Varun");
+		List<String> result = names.stream().sorted((a,b)->Integer.compareTo(s1.length(),s2.length())).collect(Collectors.toList());
+		syso(result);
+		
+		op- Raj,Shiva,Varun
+		
+		NOTE1- Integer.compareTo(s1.length(),s2.length()) - yahan par Integer implement kar raha hai compareTo method.
+		NOTE2- compareTo() - compareTo implements from Integer, Double, String, Date
+		
+		
+29.	Write a program to calculate the product of all elements in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5);
+		int result = numbers.stream().reduce(1,(a,b)->a*b).collect(Collectors.toList());
+		syso(result);
+		
+		op- 120
+		
+		NOTE1-	reduce() - Multiple values ko ek single value me reduce (convert) karta hai. And op mai single value return hota hai.
+		NOTE2- ek aur tarika hai reduce use karne ka - reduce(0,(a,b)->a+b) 
+		
+		
+30. Write a program to remove elements less than 5 From a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,5,6,9);
+		List<Integer> result = numbers.stream().filter(i->i>=5).collect(Collectors.toList());
+		syso(result);
+		
+		op-	6,9
+		
+		
+31.	Write a program to find the second-smallest element in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,5,6,9);
+		Optional<Integer> result = numbers.stream().sorted().skip(1).findFirst();
+		syso(result);
+		
+		op-	2
+		
+		
+32. Write a program to find palindromic strings in a list using the Java 8 Streams AΡΙ.
+
+Code-	List<String> alpha = List.of("aba","ba","ccc","abd");
+		List<String> result = alpha.stream().filter(
+								i -> new StringBuilder(i)
+								.reverse()
+								.toString()
+								.equals(i)
+							).collect(Collectors.toList());
+							
+		syso(result);
+		
+		op- aba, ccc
+		
+		NOTE1- new StringBuilder() - generally Strings are Immutable class but when we use the StringBuilder, it creates the Mutable Class variables.So that we can modify them or 
+									can access their advantage of some given methods which is not available in the String class or Immutable class.
+		NOTE2- new StringBuilder class has several methods - 	StringBuilder sb = new StringBuilder();
+																sb.append("Java");      // Add
+																sb.insert(0, "Hi ");    // Insert
+																sb.replace(0, 2, "Hey");// Replace
+																sb.delete(0, 4);        // Delete
+																sb.reverse();           // Reverse
+		NOTE3- So the logic we are firstly converting each value in their reverse order than comparing them with their original order thats how we are finding that it is Palindromic 
+			   or not.
+		NOTE4- toString() - this method used to convert StringBuilder into the String value.
+		NOTE5- equals() - this method contains in the String class.
+		
+		
+33.	Write a program to convert a list of strings to a set using the Java 8 Streams API.
+
+Code-	List<String> names = List.of("orange","apple","orange","apple","guava");
+		Set<String> result = names.stream().collect(Collectors.toSet());
+		syso(result);
+		
+		op- [orange,apple,guava]
+		
+
+34. Write a program to find the median value in a list of integers using the Java 8 Streams API.[Median: is a statistical measure that represents the middle value in a set of numbers
+	when they are arranged in order.]
+	For an odd number of elements: The median is the middle element.
+		Example: For the list [1, 3, 5, 7, 9], the median is 5 (the middle element).
+	For an even number of elements: The median is the average of the two middle elements.
+		Example: For the list [1, 3, 5, 7, 9, 11], the median is (5 + 7) / 2 = 6
+
+Code-	List<Integer> numbers = List.of(1, 3, 5, 7, 9);
+		double median = numbers.stream().sorted().collect(Collectors.collectingAndThen(
+								Collectors.toList(),
+								list -> {
+									int size = list.size();
+									return size%2 == 0 ?
+										( (size/2)-1 + (size/2) ) / 2.0 :
+										(size/2)
+								}
+								))
+								
+		op- 5
+		
+		
+35.	Write a program to remove duplicates from a list of integers using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1, 1, 3, 3, 5, 7, 9);
+		List<Integer> result = numbers.stream().distinct().collect(Collectors.toList());
+		syso(result);
+		
+		op- 1, 3, 5, 7, 9
+		
+
+36.	Write a program to generate list of first 10 Fibonacci sequence using the Java 8 Streams API. //fib. series - [0,1,1,2,3,5,...]
+
+Code-	int termNumber = 10;
+		List<Integer> result = Stream.iterate(new int[]{0,1} , new int[]{ t[1], t[0] + t[1] })		//[current, next] => new int[]{current = old next, next = old current + old next}
+												.limit(termNumber)
+												.map(n->n[0])												//read NOTE
+												.collect(Collectors.toList) ;
+												
+		syso(result);
+		
+		op- 0,1,1,2,3,5,8,13,21,34
+		
+		NOTE1-	iterate() - Stream API is a static factory method used to create a sequential ordered stream. It is primarily used to generate a sequence of values
+							over time, serving as a modern replacement for traditional loop structures like standard for loops.
+		NOTE2-	limit() - size of the array in which the iteration should be stopped.
+		NOTE3-	as the iteration happens there are total getting 10 pairs of arrays getting created ex.- 
+				[0,1]
+				[1,1]
+				[1,2]
+				[2,3]
+				[3,5]
+				[5,8]
+				[8,13]
+				[13,21]
+				[21,34]
+				[34,55]
+		
+		NOTE4- map(n->n[0]) - now when we are using the map method it will take the first element from all the arrays ex.-
+				[0,1]   -> 0
+				[1,1]   -> 1
+				[1,2]   -> 1
+				[2,3]   -> 2
+				[3,5]   -> 3
+				[5,8]   -> 5
+				[8,13]  -> 8
+				[13,21] -> 13
+				[21,34] -> 21
+				[34,55] -> 34
+				
+				so final result will become - [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+				
+				
+37.	Write a program to count palindromes in a list using the Java 8 Streams API.
+
+Code-	List<String> alpha = List.of("aba","ba","ccc","abd");
+		long result = alpha.stream().filter(
+								i -> new StringBuilder(i)
+								.reverse()
+								.toString()
+								.equals(i)
+							).count();
+		syso(result);
+		
+		op-	2
+		
+		
+38.	Write a program To find all subsets of a list using the Java 8 Streams API.
+
+Code-	List <Integer> numbers = List.of(1,2,3)
+		List<List<Integer>> result = numbers.stream()
+										.reduce(
+											Arrays.asList(Collections.emptyList()),											//arg1 - identity
+											(x,y) -> Stream.concat(															//arg2 - accumulator
+																	x.stream(),
+																	x.stream().map(i-> {
+																		List<Integer> newSubset = new ArrayList<>(i);
+																		newSubset.add(y)
+																		return newSubset;
+																	})
+																  ).collect(Collectors.toList()),
+											(a,b)->a																		//arg3 - combiner
+										)
+		
+		op- 	[]
+				[1]
+				[2]
+				[1,2]
+				[3]
+				[1,3]
+				[2,3]
+				[1,2,3]
+				
+				, which is 2^3 = totalElements = 8
+		
+		NOTE1-	reduce(identity, accumulator, combiner)
+				=>identity → starting value
+				=>accumulator → actual logic jo har element par chalta hai
+				=>combiner → sirf parallel stream mein partial results ko merge karne ke liye
+				
+		NOTE2-	accumulator 
+				=> (resultSoFar, currentElement) -> newResult
+				
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+-------------------------Explanation--------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Explanation of Code 38 - 
+
+Before reduce starts
+
+Identity:
+
+Arrays.asList(Collections.emptyList())
+
+Result:
+
+x = [[]]
+
+So starting state:
+
+x = [[]]
+ITERATION 1
+
+Current element:
+
+y = 1
+
+Current accumulated result:
+
+x = [[]]
+First Part
+x.stream()
+
+Produces:
+
+[[]]
+Second Part
+x.stream().map(...)
+
+Only one subset exists:
+
+i = []
+Line
+List<Integer> newSubset = new ArrayList<>(i);
+
+Copy created:
+
+newSubset = []
+Line
+newSubset.add(y);
+newSubset.add(1);
+
+Now:
+
+newSubset = [1]
+Line
+return newSubset;
+
+Returns:
+
+[1]
+
+Map result:
+
+[[1]]
+concat
+Stream.concat(
+    [[]],
+    [[1]]
+)
+
+Result:
+
+[[], [1]]
+
+This becomes next x.
+
+ITERATION 2
+
+Current:
+
+y = 2
+
+Current x:
+
+[[], [1]]
+First Part
+x.stream()
+
+Produces:
+
+[[], [1]]
+Second Part
+First subset
+i = []
+
+Copy:
+
+newSubset = []
+
+Add 2:
+
+newSubset = [2]
+
+Return:
+
+[2]
+Second subset
+i = [1]
+
+Copy:
+
+newSubset = [1]
+
+Add 2:
+
+newSubset = [1,2]
+
+Return:
+
+[1,2]
+
+Map result:
+
+[[2], [1,2]]
+concat
+[[], [1]]
++
+[[2], [1,2]]
+
+Result:
+
+[[], [1], [2], [1,2]]
+
+This becomes next x.
+
+ITERATION 3
+
+Current:
+
+y = 3
+
+Current x:
+
+[[], [1], [2], [1,2]]
+First subset
+i = []
+
+Copy:
+
+[]
+
+Add 3:
+
+[3]
+Second subset
+i = [1]
+
+Copy:
+
+[1]
+
+Add 3:
+
+[1,3]
+Third subset
+i = [2]
+
+Copy:
+
+[2]
+
+Add 3:
+
+[2,3]
+Fourth subset
+i = [1,2]
+
+Copy:
+
+[1,2]
+
+Add 3:
+
+[1,2,3]
+
+Map result:
+
+[[3], [1,3], [2,3], [1,2,3]]
+concat
+[[], [1], [2], [1,2]]
++
+[[3], [1,3], [2,3], [1,2,3]]
+
+Result:
+
+[
+ [],
+ [1],
+ [2],
+ [1,2],
+ [3],
+ [1,3],
+ [2,3],
+ [1,2,3]
+]
+Sabse Important Observation
+
+Har iteration me ye hota hai:
+
+Purane subsets
+Purane subsets ki copies jisme current element add kar diya
+Iteration 1
+[]
+
+↓
+
+[]
+[1]
+Iteration 2
+[]
+[1]
+
+↓
+
+[]
+[1]
+[2]
+[1,2]
+Iteration 3
+[]
+[1]
+[2]
+[1,2]
+
+↓
+
+[]
+[1]
+[2]
+[1,2]
+[3]
+[1,3]
+[2,3]
+[1,2,3]
+
+Isliye subsets ki count har baar double hoti hai:
+
+1
+→ 2
+→ 4
+→ 8
+
+Aur isi se 2^n subsets generate ho jaate hain.
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+-------------------------Explanation--------------------------------------------------
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+39. Write a program to reverse a list of strings using the Java 8 Streams API.
+
+Code-	List<String> words = List.of("Shiva","Raj","Varun")
+		Collections.reverse(words);
+		
+		
+40.	Write a program to count the number of characters in a list of strings using the Java 8 Streams API.
+
+Code-	List<String> words = List.of("Shiva","Raj","Varun");
+		int result = words.stream().mapToInt(String::length).sum();			//or use mapToInt(i->i.length())
+		
+		
+41.	Write a program to find first non-repeated character in a string using the Java 8 Streams AΡΙ.
+
+Code-	String names = "aabbceff";
+		char result	 =	names.chars()										//it changes them into ascii values
+						.mapToObj(i->(char)i)								//it changes them into the separate character
+						.filter(i->names.indexOf(i) == names.lastIndexOf(i))	//based on the index logic 
+						.findFirst()											//if we find names.indexOf(i) == names.lastIndexOf(i) than jjust return, dnt execute further
+						.orElse(null);
+						
+		syso(result);
+		
+		op- c
+		
+		NOTE1-	mapToObj() -  mapToObj is used to convert a primitive stream(IntStream, LongStream, and DoubleStream) into an object-valued Stream(Stream<T>).However, if you
+							  need to transform those raw numbers into custom objects, strings, or wrapper classes, you must use mapToObj to return to a standard object stream
+		NOTE2-	In Java 8, String.chars() returns an IntStream of character codes. To manipulate or print them as actual text or Character objects, mapToObj bridges the gap.
+		
+		
+42.	It is Q10 repeated.
+
+
+43.	Write a program to find the maximum Product of two integers in a list using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = Arrays.asList(-20, -10, 4, 5, 8);
+		List<Integer> sorted = numbers.stream().sorted().collect(Collectors.toList());
+		
+		if(sorted.size()>=2){
+			int result = sorted.stream().reduce(1,(a,b)->a*b);
+			return result;
+		}
+		
+		int firstMax = sorted.stream().limit(2).reduce(1,(a,b)->a*b);
+		
+		int lastMax = sorted.stream().skip(sorted.size()-2).reduce(1*,(a,b)->a*b);			//skip(sorted.size()-2) - this gives last 2 elements of the list
+		
+		int result = Math.max(firstMax, lastMax);
+		syso(result);
+		
+		op-	200
+		
+		
+44.	Write a program to Check If a List Contains a Sublist using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = List.of(1,2,3,4,5);
+		List<Integer> sublist = List.of(3,4);
+		
+		boolean result	= IntStream.rangeClosed(0, numbers.size()-sublist.size()).anyMatch(i -> numbers.sublist(i,i+sublist.size())		
+																					 .equals(sublist)
+																		);
+		syso(result);
+		
+		op-	true	
+		
+		NOTE1- numbers.sublist(arg1,arg2) - 
+			   where arg1 - starting index which will be included.
+					 arg2 - ending index which will be excluded
+					 
+					 
+45.	Write a program to Find Common Elements Between Two Lists using the Java 8 Streams API.
+
+Code-	List<String> list1 = Arrays.asList("apple", "banana", "grape", "orange");
+		List<String> list2 = Arrays.asList("banana", "grape", "kiwi");
+		
+		Set<String> result = list1.stream().filter(i->list2.contains(i)).collect(Collectors.toSet());
+		syso(result);
+		
+
+46.	Write a program to Find the Element Closest to a Given Value using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = Arrays.asList(10,22,35,41);
+		int targetValue = 30;
+		
+		int result = numbers.stream().min(
+										(n1,n2) -> Integer.compare(Math.abs(n1-targetValue), Math.abs(n2-targetValue))
+										 )
+										 .orElse(0);
+										 
+		op- 35
+		
+		
+47.	Write a program to Find the First Longest Word in A Sentence using the Java 8 Streams API.
+
+Code-	String sentence = "My name is Shivansh";
+		String result = Arrays.stream(sentence.split(" "))												
+										.max((s1,s2) -> Integer.compare(s1.length(), s2.length()))
+											.orElse(" ");
+				
+		op-	Shivansh
+			
+		NOTE-	 Arrays.stream(sentence.split(" "))	 - is line par pehle sentence.split(" ") - ye String ko String array mai convert karta hai 
+													   uske baad String Array ko Stream mai convert kiya ja raha hai.
+													   
+													   
+48.	Write a program to Count Vowels in a List of Strings using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("Hello","World");
+		long result = names.stream().flatMapToInt(String::chars).filter(i->"AEIOUaeiou".indexOf(i) != -1).count();			//if it is not -1 that means the chars are matching
+		syso(result);
+		
+		op- 3
+		
+		
+		NOTE1- flatMapToInt() - why we used flatMapToInt here?
+			 => if we use map(String::chars)
+				tab ye hume ye provide karta -  [
+												 IntStream(J,a,v,a),
+												 IntStream(A,P,I)
+												]
+			
+			 => aur jab hum use kare flatMapToInt(String::chars)
+				tab ye provide karta hai - J
+										   a
+										   v
+										   a ---- I
+										   
+										   
+49.	Write a program to Find the Shortest String in a List using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("My","Your","is");
+		Optional<String> result = names.stream().min((s1,s2)-> Integer.compare(s1.length(),s2.length()));
+		syso(result);
+		
+		op- is
+		
+
+50.	Write a program to Find the First Repeated Element in a List using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = Arrays.asList(1,2,3,4,2,5);
+		Set<Integer> check = new HashSet<>();
+		int result = numbers.stream().filter(i-> !check.add(i)).findFirst().orElse(0);
+		syso(result);
+		
+		op- 2
+		
+
+51.	Write a program to Sort Strings by Their Last Character using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("My","Your","is");  //r,s,y
+		List<String> result = names.stream().sorted(Comparator.comparingInt(i->i.charAt(i.length()-1))).collect(Collectors.toList());
+		syso(result);
+		
+		op- [Your,is,My]
+		
+		
+52.	Write a program to Find the Difference Between Two Lists using the Java 8 Streams API.
+
+Code-	List<Integer> list1 = Arrays.asList(1,2,3,4,2,5);
+		List<Integer> list2 = Arrays.asList(1,2,3,8,10,11);
+		
+		List<Integer> result = list1.stream().filter(i-> !list2.contains(i)).collect(Collectors.toList());
+		syso(result);
+		
+		op- 8,10,11
+		
+		
+53.	Write a program to Reverse the Characters of Each String in a List using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("Hi","Is","Name");
+		List<String> result = names.stream().map(i-> new StringBuilder(i).reverse().toString())
+						.collect(Collectors.toList());
+		syso(result);
+		
+		op-	[iH, sI, emaN]
+		
+		
+54.	Write a program to Count Distinct Elements in a List using the Java 8 Streams API, without using a Set.
+
+Code-	List<Integer> numbers = Arrays.asList(1,2,3,4,5,5);
+		long result = numbers.stream().distinct().count();
+		syso(result);
+		
+		op-	5
+
+		
+55.	Write a program to Find All Unique Characters in A String using the Java 8 Streams API.
+
+Code-	String names = "Hello World";
+		Set<Character> result = names.chars()
+									.mapToObj(i->(char) i)
+										.filter(c->c!=' ')
+											.collect(Collectors.toCollection(LinkedHashSet::new));		
+											
+		syso(result);
+		
+		op-	[H, e, l, o, W, r, d]
+		
+		NOTE1- here used the LinkedHashSet so that found values will be in sorted order
+		NOTE2- Set<Character> result - here we used Character in type cause this line mapToObj(i->(char) i) returns the Character Object.
+		
+		
+56.	Write a program to Find the Longest Palindrome in a List using the Java 8 Streams API.
+
+Code1-	List<String> names = Arrays.asList("mho","ppp","aba","bcb","abc");
+		
+		List<String> checkedPalindromes = names.stream().filter(i-> i.equalsIgnoreCase(new StringBuilder(i).reverse().toString())).collect(Collectors.toList());
+		
+		long maxLengthOfPal = checkedPalindromes.stream().mapToInt(i->i.length()).max().orElse(0);
+		
+		if(maxLengthOfPal == 0){
+			syso("Not found Palindrome");
+		}else{
+			List<String> result = checkedPalindromes.stream().filter(i->i.length() == maxLengthOfPal).collect(Collectors.toList());
+			syso(result);
+		}
+		
+		op-	ppp,aba,bcb
+		
+		NOTE- if our list has multiple max length Strings which are palindromes we use List here.
+		
+Code2-	String result = names.stream()
+							.filter(s -> s.equals(new StringBuilder(s).reverse().toString()))
+							.max(Comparator.comparingInt(String::length))
+							.orElse("Not Found");
+							
+		NOTE- if our list has only single max length String than it will work.
+		
+		
+57.	Write a program to find the longest word(s) in a given sentence or String using the Java 8 Streams API.
+
+Code-	String names = "Hello my name is kibito the Shivan ";
+		int maxLength = names.stream(names.split(" ")).mapToInt(i->i.length()).max().orElse(0);
+		
+		List<String> result = names.stream().filter(i->i.length() == maxLength).collect(Collectors.toList());
+		syso(result);
+		
+		op-	[kibito,Shivan]
+		
+		
+58.	Write a program to Calculate Factorials of a List of Numbers using the Java 8 Streams API.
+
+Code-	public static void main(Stream[] args){
+			List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+			List<Integer> result = numbers.stream().map(i-> fact(i)).collect(Collectors.toList());
+			syso(result);
+		}
+		
+		public static Integer fact(int n){
+			return (n==0)?1 : n*fact(n-1);
+		}
+		
+		op- [1,2,6,24,120,720];
+		
+		
+59.	Write a program to Find the Average Length of Strings in a List using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("apple","banana","kiwi");
+		double result = names.stream().mapToInt(i->i.length()).average().orElse(0);
+		syso(result);
+		
+		op-	5.0
+		
+		
+60.	Write a program to Find the Most Frequent Element in List using the Java 8 Streams API.
+	ip - [1,2,3,2,1,3]
+	op- [1,2,3]
+	
+Code-	List<Integer> numbers = Arrays.asList(1,2,3,2,1,3);
+		
+		Map<Integer,Long> groupMap = numbers.stream().collect(Collectors.groupingBy(n->n, Collectors.counting()));
+		
+		long maxLength = groupMap.values().stream().max((a,b)->Long.compare(a,b)).orElse(0L);
+		
+		List<Integer> result = groupMap.keySet().stream().filter(i-> groupMap.get(i) == maxLength).collect(Collectors.toList());
+		
+		syso(result);
+		
+		op-  [1,2,3]
+		
+		
+61.	Write a program to Count the Number of Digits in a String using the Java 8 Streams API.
+
+Code-	String names = "Hello123";
+		long result  = names.chars().filter(i-> Character.isDigit(i)).count();
+		syso(result);
+		
+		NOTE-	Jab bhi chars() use karoge, yaad rakhna:
+
+				String.chars()
+
+				➡ Returns IntStream
+
+				Isliye Character class ke methods use karte hain:
+
+				Character.isDigit(i)
+				Character.isLetter(i)
+				Character.isAlphabetic(i)
+				Character.isUpperCase(i)
+				Character.isLowerCase(i)
+				Character.isWhitespace(i)
+				
+				
+62.	Write a program to Create a Map from Two Lists using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("a","b","c");
+		List<Integer> values = Arrays.asList(1,2,3);
+		
+		Map<String,Integer> result = names.stream().collect(Collectors.toMap(n->n , v->values.get(names.indexOf(v)) ));
+		syso(result);
+		
+		op- {a=1, b=2, c=3}
+
+		NOTE1-	values.get(i) - it gives the value of that list's index.
+		NOTE2-	indexOf(j) - it gives index in which the value exists.
+		NOTE3-	bhai yahan par kuch nahi bas ye kar rahe hain ki jo String List ke jo-jo indexes hain unhe dusre List ke indexes ke value se connect karke store kar rahe hain map mai.
+		
+		
+63.	Write a program to Group strings by their length using the Java 8 Streams API.
+
+Code-	List<String> names = Arrays.asList("apple","grape","kiwi","orange");
+		Map<Integer,List<String>> result = names.stream().collect(Collectors.groupingBy(i->i.length()));
+		result.forEach((length,group)->System.out.println ( length + ":" + group))
+		
+		op- 5 - [apple,grape]
+			4 - [kiwi]
+			6 - [orange]
+			
+			
+64.	Write a program to Given a list of integers, find out all the numbers starting with (Or specific number) by using the Java 8 Streams API.
+
+Code-	List<Integer> numbers = Arrays.asList(10,12,15,40,70,50,32);
+		numbers.stream().map(i-> i + "")								//this converts the Integer into the String
+							.filter(i-> i.startsWith("1"))				//.startsWith comes under String
+								.forEach(System.out::println);
+								
+		op- 10 12 15
+		
+		
+65.	How to find the sum of transaction amounts for each day from a given list of transactions and sort them by date using the Java 8 Streams API?
+
+Code-	List<TransactionRecord> transactions1 = Arrays.asList(
+								new TransactionRecord(date "2024-12-23",amount: 180),
+								new TransactionRecord(date "2824-12-24",amount: 200),
+								new TransactionRecord(date "2824-12-25",amount: 300),
+								new TransactionRecord(date "2024-12-24",amount: 400),
+								new TransactionRecord(date "2024-12-25",amount: 500)
+								);
+								
+		Map<String, Integer> transactions2 = transactions1.stream().collect(									//summed amount on the basis of same Dates
+																		Collectors.groupingBy(i-> i.getDate(),
+																							  Collectors.summingInt(i-> i.getAmount())
+																							  ) ;											
+										
+		transactions2.entrySet().stream().sorted(Map.Entry.comparingKey())
+												.forEach(i-> System.out::println( i.getKey() + " : " + i.getValue() ));
+		
+		op- 2024-12-23: 100
+			2024-12-24: 600
+			2024-12-25: 800
+		
+		NOTE- entrySet() - entrySet() Map ko Set<Map.Entry<K,V>> mein convert karta hai. Map ke har Key-Value pair ko ek object bana deta hai.
+						   ex.- Map<String, Integer> map = new HashMap<>();
+								map.put("Ram", 100);
+								map.put("Shyam", 200);
+								map.put("Mohan", 300);
+								
+								it becomes - 	{
+												Ram=100,
+												Shyam=200,
+												Mohan=300
+												}
+												
+								if we use - map.entrySet(); 		//Map.Entry<String,Integer>
+								it becomes -	[
+												Ram=100,
+												Shyam=200,
+												Mohan=300
+												]
+												
+								now if we use map.entrySet().stream() , we can now use the Key & Value separately to get the result.
+								
+								
+66.	How to Find Employees By Department using the Java 8 Streams API?
+
+Code-	List<Employee> employeeList = Arrays.asList(
+										new Employee(name: "Saurabh", department: "IT"),
+										new Employee(name: "Shubham", department: "HR"),
+										new Employee(name: "Sony", department: "IT"),
+										new Employee(name: "Rahul", department: "HR")
+										);
+										
+		List<Employee> result = employeeList.stream().filter(i-> "IT".equals(i.getDepartment())).collect(Collectors.toList());
+		
+		result.forEach(System.out::println);
+		
+		op- Employee{name: "Saurabh", department: "IT"}
+			Employee{name: "Sony", department: "IT"}
+			
+			
+67.	How to Find the highest-paid employee using the Java 8 Streams API?
+
+Code-	List<Employee> employees = Arrays.asList(
+												new Employee(name: "Rahul Sharma, salary: 75000),
+												new Employee (name: "Anita Verma", salary: 82800),
+												new Employee( name: "Vikas Gupta", salary: 56000),
+												new Employee (name: "Priya Singh", salary: 90000)
+											 );
+											 
+		Employee result = employees.stream().max(Comparator.comparingDouble(i->i.getSalary())).orElseThrow(()-> new RuntimeException());
+		syso(result);
+		
+		op- Employee {name "Priya Singh", salary: 90000}
+		
+		
+68.	How to Find the Total Salary by "Department" using the Java 8 Streams API?
+
+Code-	List<Employee> employees = Arrays.asList(
+												new Employee(empName: "Rajesh Kumar", departmentName: "IT", salary: 60000),
+												new Employee(empName: "Priya Sharma", departmentName: "HR", salary: 55000),
+												new Employee(empName: "Ankit Singh", departmentName: "IT", salary 65000),
+												new Employee(empName: "Neha Gupta", departmenthlame "Finance", salary: 70000),
+												new Employee(empName: "Vikas Yadav" department Name: "HR", salary: 45000)
+												);
+												
+		Map<String,Double> result = employees.stream().collect(
+									Collectors.groupingBy(i->i.getDepartmentName()),
+									Collectors.summingDouble(i->i.getSalary())
+									);
+									
+		result.forEach((dept,salary)-> System.out::println(dept +  ":" + salary))
+		
+		op- Finance: 70000.0
+			HR: 100000.0
+			IT: 125000.0
+		
+		NOTE - groupingBy() - where ever u use the groupingBy than u need to Store it in the Map<T,T>.
+		
+		
+69.	How to Find the Top 3 Highest-Paid Employees in IT Department using the Java 8 Streams API?
+
+Code-	List<Employee> employees = Arrays.asList(
+											new Employee(empName: "Saurabh", departmentName "IT", salary: 120000),
+											new Employee(empName: "Shubham", departmentName: "IT", salary: 150000),
+											new Employee (empName: "Pooja", departmentName: "HR", salary: 80000),
+											new Employee(empName: "David", departmentName "IT", salary: 200000),
+											new Employee (empNamer "Gaurav", departmentName: "IT", salary: 250000),
+											new Employee(empName: "Soni", departmentName: "Finance", salary: 95000)
+											);
+											
+		List<Employee> result = employees.stream().filter(i->"IT".equals(i.getDepartment()))
+									.sorted(i->Comparator.comparingDouble(Employee::getSalary()))
+										.reverse().limit(3)
+											.collect(Collectors.toList());
+											
+		result.forEach(System.out::println);
+		
+		op- Employee{empName='Gaurav', departmentName='IT', salary=250000.0)
+			Employee{empName='David', departmentName='IT', salary=200000.0) 
+			Employee(empName='Shubham', departmentName='IT', salary=150000.0)

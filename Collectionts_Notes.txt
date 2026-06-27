@@ -52,14 +52,16 @@
 		
 				Types of it-
 				
-				1.HashSet✅ - 
+				1.HashSet✅  (Pure HashMap) - 
 								=> HashSet is the implmentation class of Set.
 								=> it does not follow the sorting order & the insertion order also is not maintained.
+								=> HashSet uses HashMap internally.
 								
 								Type of it -
 								
-								1.LinkedHashSet✅ - 
+								1.LinkedHashSet✅ (LinkedHashMap) - 
 													=> it provides the extra features to the HashSet.Like order preserved and avoding duplicates value.
+													=> LinkedHashSet uses LinkedHashMap internally.
 				
 				2.SortedSet🟡 - 
 								=> it provides the sorting functionality to the Set.
@@ -70,6 +72,12 @@
 												=> By default ascending order sorting provide.
 												=> We can write the custom logic for sorting of our made object.
 												=> It is implmentation of Binary Search Tree.
+												
+				3.ConcurrentHashMap - ConcurrentHashMap.newKeySet()
+									  
+									  NOTE-	Normal collections (jaise HashSet ya TreeSet) thread-safe nahi hote. Agar ek se zyada threads ek hi time par unme 
+											data daal rahe ho ya remove kar rahe ho, to aapka data corrupt ho sakta hai ya fir ConcurrentModificationException crash mil jayega.
+											Isi problem ko solve karne ke liye Java Collections Framework mein ek main Thread-Safe Set aata hain known as Conc. hashmap.
 
 	2.Map🟡 -
 			 => it has key-value pairs.
